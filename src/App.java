@@ -26,7 +26,7 @@ public class App{
                 System.out.println("2 - Usar[" + atestado_médico.getNome() + "] (Custa 1 hora de sono | Escudo: 8)");
                 System.out.println("3 - Encerrar turno (Dormir)");
                 System.out.println("Escolha seu movimento frio e calculista: ");
-
+                
                 int input = teclado.nextInt();
 
                 if (input == 1) {
