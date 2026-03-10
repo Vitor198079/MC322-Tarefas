@@ -1,7 +1,7 @@
 public class CartaEscudo {
     private String nome;
     private int custo;
-    private int valor_migue; //Pontos adicionados ao escudo
+    private int valor_migue; 
 
     public CartaEscudo(String nome, int custo, int migue){
         this.nome = nome;
@@ -19,5 +19,8 @@ public class CartaEscudo {
     }
     public String getNome(){
         return this.nome;
+    }
+    public int getCusto(){
+        return this.custo;
     }
 }

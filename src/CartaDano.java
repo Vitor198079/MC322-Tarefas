@@ -12,7 +12,7 @@ public class CartaDano {
     public void usar(Heroi heroi, Inimigo inimigo){
         if(this.custo_horas_de_sono <= heroi.getHorasdeSono()){
             heroi.perderHorasdeSono(this.custo_horas_de_sono);
-            System.out.println("Você sacrificou " + this.custo_horas_de_sono + "horas de sono para usar" + this.nome_carta + "!");
+            System.out.println("Você sacrificou " + this.custo_horas_de_sono + " horas de sono para usar " + this.nome_carta + "!");
             inimigo.receberdano(this.dano);
         }
         else{
@@ -22,7 +22,9 @@ public class CartaDano {
     public String getNome(){
         return this.nome_carta;
     }
-
+    public int getCusto(){
+        return this.custo_horas_de_sono;
+    }
     public int GetDano(){
         return dano;
     }

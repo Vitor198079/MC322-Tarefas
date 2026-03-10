@@ -15,7 +15,7 @@ public class Heroi {
     public void receberdano(int dano){
         if(dano < this.escudo){
             this.escudo -= dano;
-            System.out.println("O brasileiro perdeu" + dano + "% de cafeína e agora está mais vulnerável!");
+            System.out.println("O brasileiro perdeu"  + dano + "% de cafeína e agora está mais vulnerável!");
         }
         else{
             System.out.println("O brasileiro não tem mais cafeína no sangue para aguentar o trampo");
@@ -27,10 +27,19 @@ public class Heroi {
             else{
                     int dano_restante = dano - this.escudo;
                     this.vida -= dano_restante;
-                    System.out.println(this.nome + "recebeu" + dano + "de dano");
-                    System.out.println("Ainda restam" + this.vida + "de vida para ir de comes e bebes!");
+                    System.out.println(this.nome + " recebeu " + dano + " de dano");
+                    System.out.println("Ainda restam " + this.vida + " de vida para ir de comes e bebes!");
                 }
             }
+    }
+    public String GetNome(){
+        return this.nome;
+    }
+    public int GetVida(){
+        return this.vida;
+    }
+    public int getEscudo(){
+        return this.escudo;
     }
     public int getHorasdeSono(){
         return horas_de_sono;
@@ -40,12 +49,12 @@ public class Heroi {
     }
 
     public void atacar(CartaDano ataque, Inimigo inimigo, Heroi heroi){
-        System.out.println(this.nome + "usou o jeitinho brasileiro para atacar!");
+        System.out.println(this.nome + " usou o jeitinho brasileiro para atacar!");
         ataque.usar(heroi, inimigo);
     }
     public void ganharEscudo(int valor_migue){
         this.escudo += valor_migue;
-        System.out.println(this.nome + "deu o migué do século e recebeu" + valor_migue + "escudo!");
+        System.out.println(this.nome + " deu o migué do século e recebeu " + valor_migue + " escudo!");
     }
     //O escudo do jogador é descartado no começo de cada turno
     public void IniciarTurno(){
