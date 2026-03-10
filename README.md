@@ -12,10 +12,11 @@ javac -d bin $(find src -name"*.java")
 java -cp bin App
 ```
 ### 3. Interagir com o terminal
-
+![alt text](image.png)
 ```bash
 1
 ```
+![alt text](image-1.png)
 
 ```bash
 2
