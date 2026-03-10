@@ -15,20 +15,21 @@ public class Heroi {
     }
     //função que altera os atributos do herói conforme dano é recebido
     public void receberdano(int dano){
-        if(dano < this.escudo){
+        if(dano <= this.escudo){
             this.escudo -= dano;
-            System.out.println("O brasileiro perdeu"  + dano + "% de cafeína e agora está mais vulnerável!");
+            System.out.println("O brasileiro perdeu "  + dano + "% de cafeína e agora está mais vulnerável!");
         }
         else{
             System.out.println("O brasileiro não tem mais cafeína no sangue para aguentar o trampo");
-            if(dano >= this.vida + this.escudo){
-                this.vida = 0;
+            int dano_restante = dano - this.escudo;
+            this.escudo = 0;
+            this.vida -= dano_restante;
+            if(this.vida <= 0){
+                this.vida = 0;  
                 System.out.println("Você teve seu score do Serasa zerado! Fim de Jogo!");
                 System.out.println("Você se tornou um brasileiro Nutella!");
             }
             else{
-                    int dano_restante = dano - this.escudo;
-                    this.vida -= dano_restante;
                     System.out.println(this.nome + " recebeu " + dano + " de dano");
                     System.out.println("Ainda restam " + this.vida + " de vida para ir de comes e bebes!");
                 }
