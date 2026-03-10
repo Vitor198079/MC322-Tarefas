@@ -3,12 +3,14 @@ public class Inimigo {
     private int vida;
     private int escudo;
 
+    //Construtor do Inimigo
     public Inimigo(String nome, int vida){
         this.nome = nome;
         this.vida = vida;
         this.escudo = 0;
     }
 
+    //função que altera os atributos do inimigo conforme o dano é recebido
     public void receberdano(int dano){
         if(dano < this.escudo){
             this.escudo -= dano;
@@ -30,6 +32,7 @@ public class Inimigo {
                 }
         }
     }
+    //retorna os atributos do herói
     public int getVida(){
         return this.vida;
     }
@@ -39,10 +42,12 @@ public class Inimigo {
     public int getEscudo(){
         return this.escudo;
     }
+    //função que possibilita o ataque do inimigo
     public void atacar(CartaDano ataque, Heroi heroi){
         System.out.println("O ataque do " + this.nome + " te empurrou " + ataque.GetDano() + " pontos em direção ao Vasco da Gama!");
         heroi.receberdano(ataque.GetDano());
     }
+    //caso vida < 0, o herói ganha e o jogo termina
     public boolean estaVivo(){
         return this.vida > 0;                                                                                                         
     }

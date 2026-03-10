@@ -1,21 +1,26 @@
 import java.util.Scanner;
 public class App{
     public static void main(String[] args){
+        //recebr informações e declarar os personagens participantes
         Scanner teclado = new Scanner(System.in);
         Heroi Silvio_Santos = new Heroi("Silvio Santos", 100, 24);
         Inimigo boleto_vencido = new Inimigo("Boleto Vencido", 100);
 
-        CartaDano Jogar_no_Paredao = new CartaDano("Jogar no Paredão", 3, 20);
+         //declarar as cartas de dano e escudo
+        CartaDano Jogar_no_Paredao = new CartaDano("Jogar no Paredão", 3, 8);
         CartaEscudo atestado_médico = new CartaEscudo("Atestado Médico", 1, 8);
 
+        //Início da batalha
         System.out.println("===QUE COMECE A BADERNA!===");
         System.out.println("O " + boleto_vencido.GetNome() + " apareceu para cortar seu barato!");
         System.out.println("-------------------------");
 
+        //loop ocorre conforme o herói ainda está vivo
         while(Silvio_Santos.estaVivo() && boleto_vencido.estaVivo()){
             Silvio_Santos.IniciarTurno();
             boolean turno_acontecendo = true;
 
+            //loop que ocorre conforme o inimigo ainda está vivo
             while(turno_acontecendo && boleto_vencido.estaVivo()){
                 System.out.println("\n--- SEU TURNO ---");
                 System.out.println(Silvio_Santos.GetNome()+ ": " +  "(" + Silvio_Santos.GetVida() + "/100" + " (" + Silvio_Santos.getEscudo() + " de escudo)");
@@ -64,15 +69,16 @@ public class App{
                 }
             }
 
+            //verificar se o inimigo ainda está vivo
             if (boleto_vencido.estaVivo()) {
                 System.out.println("\n--- TURNO DO PERRENGUE ---");
-                CartaDano ataqueInimigo = new CartaDano("Juros Abusivos", 0, 7);
+                CartaDano ataqueInimigo = new CartaDano("Juros Abusivos", 0, 20);
                 boleto_vencido.atacar(ataqueInimigo, Silvio_Santos);
                 System.out.println("-------------------------------");
             }
         }
 
-      
+        //declara o fim da batalha
         System.out.println("\n=== FIM DA BADERNA ===");
         if (Silvio_Santos.estaVivo()) {
             System.out.println("VITÓRIA! Você venceu o sistema e não vai pro Vasco da Gama");

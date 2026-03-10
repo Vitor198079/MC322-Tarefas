@@ -5,6 +5,7 @@ public class Heroi {
     private int horas_de_sono;
     private int max_horas_de_sono;
 
+    //Construtor do Herói
     public Heroi(String nome, int vida, int horas_de_sono){
         this.nome = nome;
         this.vida = vida;
@@ -12,6 +13,7 @@ public class Heroi {
         this.horas_de_sono = horas_de_sono;
         this.max_horas_de_sono = horas_de_sono;
     }
+    //função que altera os atributos do herói conforme dano é recebido
     public void receberdano(int dano){
         if(dano < this.escudo){
             this.escudo -= dano;
@@ -32,6 +34,7 @@ public class Heroi {
                 }
             }
     }
+    //função que retorna os atributos do herói em funções públicas (Getters)
     public String GetNome(){
         return this.nome;
     }
@@ -48,6 +51,7 @@ public class Heroi {
         this.horas_de_sono -= custo;
     }
 
+    //função que possibilita o herói de atacar
     public void atacar(CartaDano ataque, Inimigo inimigo, Heroi heroi){
         System.out.println(this.nome + " usou o jeitinho brasileiro para atacar!");
         ataque.usar(heroi, inimigo);
@@ -66,6 +70,7 @@ public class Heroi {
             System.out.println("Um novo turno começou!");
         }
     }
+    //caso vida < 0, o herói perde e a batalha é encerrada
     public boolean estaVivo(){
        return this.vida > 0;                                                                                                           
     }

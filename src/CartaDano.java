@@ -3,12 +3,15 @@ public class CartaDano {
     private int custo_horas_de_sono;
     private int dano;
 
+    //Construtor da CartaDano
     public CartaDano(String nome_carta, int custo_horas_de_sono, int dano){
         this.nome_carta = nome_carta;
         this.custo_horas_de_sono = custo_horas_de_sono;
         this.dano = dano;
 
     }
+
+    //declara a função utilizável da carta dano
     public void usar(Heroi heroi, Inimigo inimigo){
         if(this.custo_horas_de_sono <= heroi.getHorasdeSono()){
             heroi.perderHorasdeSono(this.custo_horas_de_sono);
