@@ -21,14 +21,17 @@ java -cp bin App
 ```bash
 2
 ```
+![alt text](image-4.png)
 
 ```bash
 3
 ```
+![alt text](image-3.png)
 
 ```bash
 4
 ```
+![alt text](image-5.png)
 
 
 Boa diversão!
