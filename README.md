@@ -5,7 +5,7 @@ Um jogo de duelo simples via terminal, baseado em memes e na cultura popular bra
 ## Quick Start - Como Copilar?
 ### 1.  Compilar os arquivos-fontes
 ```bash
-javac -d bin $(find src -name"*.java")
+javac -d bin $(find src -name "*.java")
 ```
 ### 2. Executar o programa
 ```bash

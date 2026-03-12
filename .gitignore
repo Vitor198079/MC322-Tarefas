@@ -1,0 +1,9 @@
+# --- Java Build Artefacts ---
+*.class
+bin/
+
+# --- IDE Settings ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -11,7 +11,7 @@ public class Inimigo {
     }
 
     //função que altera os atributos do inimigo conforme o dano é recebido
-    public void receberdano(int dano){
+    public void receberDano(int dano){
         if(dano < this.escudo){
             this.escudo -= dano;
             System.out.println("O perrengue perdeu " + dano + " de prazo de dias úteis e agora está mais vulnerável!");
@@ -19,6 +19,7 @@ public class Inimigo {
         else{
 
             System.out.println("O perrengue não tem mais prazo de dias úteis para se defender do brasileiro!");
+            this.escudo = 0;
             if(dano >= this.vida + this.escudo){
                 this.vida = 0;
                 System.out.println("Você derrotou " + this.nome + " e sobreviveu a mais um perrengue!");
@@ -45,7 +46,7 @@ public class Inimigo {
     //função que possibilita o ataque do inimigo
     public void atacar(CartaDano ataque, Heroi heroi){
         System.out.println("O ataque do " + this.nome + " te empurrou " + ataque.GetDano() + " pontos em direção ao Vasco da Gama!");
-        heroi.receberdano(ataque.GetDano());
+        heroi.receberDano(ataque.GetDano());
     }
     //caso vida < 0, o herói ganha e o jogo termina
     public boolean estaVivo(){

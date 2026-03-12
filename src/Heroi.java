@@ -14,7 +14,7 @@ public class Heroi {
         this.max_horas_de_sono = horas_de_sono;
     }
     //função que altera os atributos do herói conforme dano é recebido
-    public void receberdano(int dano){
+    public void receberDano(int dano){
         if(dano <= this.escudo){
             this.escudo -= dano;
             System.out.println("O brasileiro perdeu "  + dano + "% de cafeína e agora está mais vulnerável!");

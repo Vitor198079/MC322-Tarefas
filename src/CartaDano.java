@@ -16,7 +16,7 @@ public class CartaDano {
         if(this.custo_horas_de_sono <= heroi.getHorasdeSono()){
             heroi.perderHorasdeSono(this.custo_horas_de_sono);
             System.out.println("Você sacrificou " + this.custo_horas_de_sono + " horas de sono para usar " + this.nome_carta + "!");
-            inimigo.receberdano(this.dano);
+            inimigo.receberDano(this.dano);
         }
         else{
             System.out.println("O brasileiro tá virado! E não tem horas de sono o sufiente para sacrificar com o ataque");
