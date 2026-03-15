@@ -1,29 +1,21 @@
-public class CartaEscudo {
-    private String nome;
-    private int custo;
+public class CartaEscudo extends Carta{
     private int valor_migue; 
     
-    //Construtor da Carta Escudo
-    public CartaEscudo(String nome, int custo, int migue){
-        this.nome = nome;
-        this.custo = custo;
+    //Construtor da Carta Escudo que passa os atributos para superclasse
+    public CartaEscudo(String nome, String descricao, int custo, int migue){
+        super(nome, descricao, custo);
         this.valor_migue = migue;
     }
-    //declara a função utilizável da carta escudo
-    public void usar(Heroi heroi){
-        if(this.custo <= heroi.getHorasdeSono()){
-            heroi.perderHorasdeSono(this.custo);
+    
+
+    public void usar(Heroi heroi, Inimigo inimigo){
+        if(this.getCusto() <= heroi.getHorasdeSono()){
+            heroi.perderHorasdeSono(this.getCusto());
+            System.out.println("Você de o migué e usou " + this.getNome() + "!");
             heroi.ganharEscudo(this.valor_migue);
         }
         else{
             System.out.println("O brasileiro tá virado! E não tem horas de sono o sufiente para dar um migué!");
         }
-    }
-    //retorna as propriedades da carta dano
-    public String getNome(){
-        return this.nome;
-    }
-    public int getCusto(){
-        return this.custo;
     }
 }

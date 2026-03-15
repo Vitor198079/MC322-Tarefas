@@ -1,90 +1,112 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class App{
     public static void main(String[] args){
         //recebr informações e declarar os personagens participantes
         Scanner teclado = new Scanner(System.in);
         Heroi Silvio_Santos = new Heroi("Silvio Santos", 100, 24);
-        Inimigo boleto_vencido = new Inimigo("Boleto Vencido", 100);
+        Inimigo boleto_vencido = new Inimigo("Boleto Vencido", 100, 30);
+
+        ArrayList<Carta> compra = new ArrayList<>();
+        ArrayList<Carta> mao = new ArrayList<>();
+        ArrayList<Carta> descarte = new ArrayList<>();
+
 
          //declarar as cartas de dano e escudo
-        CartaDano Jogar_no_Paredao = new CartaDano("Jogar no Paredão", 3, 8);
-        CartaEscudo atestado_medico = new CartaEscudo("Atestado Médico", 1, 8);
+        compra.add(new CartaDano("Jogar no Paredão", "Coloca o inimigo pra votação popular da casa mais vigiada do Brasil", 3, 8));
+        compra.add(new CartaEscudo("Atestado Médico", "O famoso migué de não precisar ter que trabalhar por questões de 'saúde'", 1, 8));
+
+        Collections.shuffle(compra);
 
         //Início da batalha
         System.out.println("===QUE COMECE A BADERNA!===");
-        System.out.println("O " + boleto_vencido.GetNome() + " apareceu para cortar seu barato!");
+        System.out.println("O " + boleto_vencido.getNome() + " apareceu para cortar seu barato!");
         System.out.println("-------------------------");
 
         //loop ocorre conforme o herói ainda está vivo
-        while(Silvio_Santos.estaVivo() && boleto_vencido.estaVivo()){
+        while(Silvio_Santos.estavivo() && boleto_vencido.estavivo()){
             Silvio_Santos.IniciarTurno();
             boolean turno_acontecendo = true;
 
+            System.out.println("\n[Comprando cartas...]");
+            for(int i = 0; i < 3; i++){
+                if(compra.isEmpty()){
+                    System.out.println("Acabou o baralho! O estagiário reciclou o lixo...");
+                    compra.addAll(descarte);
+                    descarte.clear();
+                    Collections.shuffle(compra);
+                }
+                if(!compra.isEmpty()){
+                    mao.add(compra.remove(0));
+                }
+            }
             //loop que ocorre conforme o inimigo ainda está vivo
-            while(turno_acontecendo && boleto_vencido.estaVivo()){
+            while(turno_acontecendo && boleto_vencido.estavivo()){
                 System.out.println("\n--- SEU TURNO ---");
-                System.out.println(Silvio_Santos.GetNome()+ ": " +  "(" + Silvio_Santos.GetVida() + "/100)" + " (" + Silvio_Santos.getEscudo() + " de escudo)");
+                System.out.println(Silvio_Santos.getNome()+ ": " +  "(" + Silvio_Santos.getVida() + "/100)" + " (" + Silvio_Santos.getEscudo() + " de escudo)");
                 System.out.println("vs.");
-                System.out.println(boleto_vencido.GetNome() + ": " + "(" + boleto_vencido.getVida() + "/100)" + " (" + boleto_vencido.getEscudo() + " de escudo)");
+                System.out.println(boleto_vencido.getNome() + ": " + "(" + boleto_vencido.getVida() + "/100)" + " (" + boleto_vencido.getEscudo() + " de escudo)");
                 System.out.println("Horas de Sono disponíveis: " + Silvio_Santos.getHorasdeSono() + "/24");
-                System.out.println("1 - Usar [" + Jogar_no_Paredao.getNome() + "] (Custa 3 horas de sono | Dano: 8)");
-                System.out.println("2 - Usar[" + atestado_medico.getNome() + "] (Custa 1 hora de sono | Escudo: 8)");
-                System.out.println("3 - Encerrar turno (Dormir)");
-                System.out.println("Escolha seu movimento frio e calculista: ");
+
+                System.out.println("\nEscolha sua gambiarra:");
+                int escolha = 1;
+                for (Carta c : mao){
+                    System.out.println(escolha + " - Usar [" + c.getNome() + "] (Custa " + c.getCusto() + " | " + c.getDescricao() + ")");
+                    escolha++;
+                }
+                int escolha_encerrar = escolha;
+                System.out.println(escolha_encerrar + " - Encerrar turno (Dormir)");
+                System.out.println(">>> ");
                 
                 int input = teclado.nextInt();
-
-                if (input == 1) {
-                    System.out.println("-------------------------------");
-                    if (Silvio_Santos.getHorasdeSono() >= Jogar_no_Paredao.getCusto()) {
-                        Silvio_Santos.atacar(Jogar_no_Paredao, boleto_vencido, Silvio_Santos);
+                System.out.println("-------------------------------");
+                if (input >= 1 && input < escolha_encerrar) {
+                    Carta cartaEscolhida = mao.get(input - 1);
+                    if (Silvio_Santos.getHorasdeSono() >= cartaEscolhida.getCusto()) {
+                        cartaEscolhida.usar(Silvio_Santos, boleto_vencido);
+                        descarte.add(mao.remove(input - 1));
                     } else {
-                        System.out.println("Você tá muito cansado para jogar alguém no paredão agora! Durma mais!");
+                        System.out.println("Você tá muito cansado para essa jogada agora! Durma mais!");
                     }
                     System.out.println("-------------------------------");
                 } 
-                else if (input == 2) {
+                else if (input == escolha_encerrar) {
                     System.out.println("-------------------------------");
-                    if (Silvio_Santos.getHorasdeSono() >= atestado_medico.getCusto()) {
-                        atestado_medico.usar(Silvio_Santos);
-                    } else {
-                        System.out.println("Você não tem energia nem pra dar um migué!");
-                    }
-                    System.out.println("-------------------------------");
-                } 
-                else if (input == 3) {
-                    System.out.println("-------------------------------");
-                    System.out.println("Você encerrou o seu turno.");
+                    System.out.println("Você encerrou seu turno e foi de base (dormir)");
                     turno_acontecendo = false;
-                    System.out.println("-------------------------------");
                 } 
                 else {
-                    System.out.println("-------------------------------");
-                    System.out.println("Opção inválida! A ansiedade bateu!, digite 1, 2 ou 3.");
-                    System.out.println("-------------------------------");
-                }
-
-                if (!boleto_vencido.estaVivo()) {
+                    System.out.println("Opção inválida! Ansiedade bateu!, digite um número válido.");
+                } 
+                System.out.println("-------------------------------");
+                if (!boleto_vencido.estavivo()) {
                     break;
                 }
             }
 
-            //verificar se o inimigo ainda está vivo
-            if (boleto_vencido.estaVivo()) {
-                System.out.println("\n--- TURNO DO PERRENGUE ---");
-                CartaDano ataqueInimigo = new CartaDano("Juros Abusivos", 0, 20);
-                boleto_vencido.atacar(ataqueInimigo, Silvio_Santos);
-                System.out.println("-------------------------------");
+        if (mao.isEmpty() && turno_acontecendo) {
+            System.out.println("Você ficou sem cartas na mão! Fim do turno.");
+            turno_acontecendo = false;
             }
+        if(!mao.isEmpty()){
+            descarte.addAll(mao);
+            mao.clear();
+            System.out.println("Gambiarras que sobraram na sua mão foram descartadas");
         }
-
-        //declara o fim da batalha
-        System.out.println("\n=== FIM DA BADERNA ===");
-        if (Silvio_Santos.estaVivo()) {
-            System.out.println("VITÓRIA! Você venceu o sistema e não vai pro Vasco da Gama");
-        } else {
-            System.out.println("DERROTA! O perrengue te derrotou, espere pela contratação do Vasco");
+        if(boleto_vencido.estavivo()){
+            System.out.println("\n--- TURNO DO PERRENGUE ---");
+            boleto_vencido.atacar(Silvio_Santos);
+            System.out.println("-------------------------------");
         }
+    }
+    System.out.println("\n=== FIM DA BADERNA ===");
+    if(Silvio_Santos.estavivo()){
+        System.out.println("VITÓRIA! Você venceu o sistema e não vai pro Vasco da Gama!");
+    }else{
+        System.out.println("DERROTA! O perrengue te derrotou, espere pela contratação do Vasco.");
+    }
 
         teclado.close(); 
     }
