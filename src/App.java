@@ -16,7 +16,27 @@ public class App{
 
          //declarar as cartas de dano e escudo
         compra.add(new CartaDano("Jogar no Paredão", "Coloca o inimigo pra votação popular da casa mais vigiada do Brasil", 3, 8));
+        compra.add(new CartaDano("Esqueceu a senha do GOV", "Faz o inimigo perder tempo recuperando a senha do GOV", 2, 5));
+        compra.add(new CartaDano("Chuva no Litoral", "Atrapalha todos os planos e deixa tudo um caos", 4, 12));
+        compra.add(new CartaDano("Greve de Ônibus", "O inimigo fica preso e perde produtividade", 5, 15));
+        compra.add(new CartaDano("Fila do SUS", "Faz o inimigo esperar por horas intermináveis", 6, 18));
+        compra.add(new CartaDano("Prova Surpresa", "Pega desprevenido e causa desespero imediato", 3, 10));
+        compra.add(new CartaDano("Trânsito na Marginal", "Paralisa completamente o inimigo", 7, 20));
+        compra.add(new CartaDano("Internet Caiu", "Interrompe tudo no pior momento possível", 2, 6));
+        compra.add(new CartaDano("Calor de 40 Graus", "Drena energia e causa sofrimento", 4, 11));
+        compra.add(new CartaDano("Golpe do Pix", "Confunde o inimigo e causa prejuízo", 5, 14));
+
         compra.add(new CartaEscudo("Atestado Médico", "O famoso migué de não precisar ter que trabalhar por questões de 'saúde'", 1, 8));
+        compra.add(new CartaEscudo("Vale Refeição", "Garante energia pra continuar o dia", 2, 10));
+        compra.add(new CartaEscudo("Cafezinho", "Recupera um pouco das forças com um clássico brasileiro", 1, 5));
+        compra.add(new CartaEscudo("Feriado Prolongado", "Permite descanso extra e recuperação", 5, 20));
+        compra.add(new CartaEscudo("13º Salário", "Dá aquele alívio financeiro salvador", 4, 18));
+        compra.add(new CartaEscudo("Churrasco de Domingo", "Recupera completamente o moral", 6, 22));
+        compra.add(new CartaEscudo("Rede na Varanda", "Descanso garantido e tranquilo", 3, 12));
+        compra.add(new CartaEscudo("Pix Recebido", "Recuperação instantânea de ânimo", 2, 9));
+        compra.add(new CartaEscudo("Delivery Chegou", "Evita esforço e recupera energia", 2, 8));
+        compra.add(new CartaEscudo("Bolsa Família", "Garante uma ajuda essencial nos momentos difíceis", 3, 15));
+
 
         Collections.shuffle(compra);
 
