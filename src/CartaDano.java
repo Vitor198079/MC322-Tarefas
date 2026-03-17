@@ -14,7 +14,6 @@ public class CartaDano extends Carta{
             System.out.println("Você sacrificou " + this.getCusto() + " horas de sono para usar " + this.getNome() + "!");
             inimigo.receberDano(this.dano);
 
-            inimigo.receberDano(this.dano);
         }
         else{
             System.out.println("O brasileiro tá virado! E não tem horas de sono o sufiente para usar "  + this.getNome() + ".");

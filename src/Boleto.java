@@ -8,7 +8,7 @@ public class Boleto extends Inimigo {
     }
 
     public void atacar(Heroi heroi){
-        System.out.println(this.getNome() + " atacou e causou " + this.getVida() + " de dano para te levar ao Vasco da Gama!");
+        System.out.println(this.getNome() + " atacou e causou " + this.dano + " de dano para te levar ao Vasco da Gama!");
         heroi.receberDano(this.dano);
     }
 }

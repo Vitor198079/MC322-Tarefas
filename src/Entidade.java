@@ -30,7 +30,7 @@ public abstract class Entidade {
 
         }
     }
-    public boolean estavivo(){
+    public boolean estaVivo(){
         return this.vida > 0;
     }
     public void ganharEscudo(int valor_migue){
