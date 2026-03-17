@@ -7,7 +7,7 @@ public class App{
         //recebr informações e declarar os personagens participantes
         Scanner teclado = new Scanner(System.in);
         Heroi Silvio_Santos = new Heroi("Silvio Santos", 100, 24);
-        Inimigo boleto_vencido = new Inimigo("Boleto Vencido", 100, 30);
+        Inimigo boleto_vencido = new Boleto("Boleto Vencido", 100, 30);
 
         ArrayList<Carta> compra = new ArrayList<>();
         ArrayList<Carta> mao = new ArrayList<>();
@@ -42,6 +42,7 @@ public class App{
                     mao.add(compra.remove(0));
                 }
             }
+            boleto_vencido.anunciar_ataque();
             //loop que ocorre conforme o inimigo ainda está vivo
             while(turno_acontecendo && boleto_vencido.estavivo()){
                 System.out.println("\n--- SEU TURNO ---");
