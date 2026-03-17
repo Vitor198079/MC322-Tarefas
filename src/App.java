@@ -31,7 +31,7 @@ public class App{
         compra.add(new CartaEscudo("Cafezinho", "Recupera um pouco das forças com um clássico brasileiro", 1, 5));
         compra.add(new CartaEscudo("Feriado Prolongado", "Permite descanso extra e recuperação", 5, 20));
         compra.add(new CartaEscudo("13º Salário", "Dá aquele alívio financeiro salvador", 4, 18));
-        compra.add(new CartaEscudo("Churrasco de Domingo", "Recupera completamente o moral", 6, 22));
+        compra.add(new CartaEscudo("Churrasco de Domingo", "Cervejinha e carne recuperam a vitalidade", 6, 22));
         compra.add(new CartaEscudo("Rede na Varanda", "Descanso garantido e tranquilo", 3, 12));
         compra.add(new CartaEscudo("Pix Recebido", "Recuperação instantânea de ânimo", 2, 9));
         compra.add(new CartaEscudo("Delivery Chegou", "Evita esforço e recupera energia", 2, 8));
@@ -74,7 +74,7 @@ public class App{
                 System.out.println("\nEscolha sua gambiarra:");
                 int escolha = 1;
                 for (Carta c : mao){
-                    System.out.println(escolha + " - Usar [" + c.getNome() + "] (Custa " + c.getCusto() + " | " + c.getDescricao() + ")");
+                    System.out.println(escolha + " - Usar [" + c.getNome() + "] (Custa " + c.getCusto() + " horas de sono | " + c.getDescricao() + ")");
                     escolha++;
                 }
                 int escolha_encerrar = escolha;
@@ -94,14 +94,13 @@ public class App{
                     System.out.println("-------------------------------");
                 } 
                 else if (input == escolha_encerrar) {
-                    System.out.println("-------------------------------");
                     System.out.println("Você encerrou seu turno e foi de base (dormir)");
                     turno_acontecendo = false;
                 } 
                 else {
                     System.out.println("Opção inválida! Ansiedade bateu!, digite um número válido.");
+                    System.out.println("-------------------------------");
                 } 
-                System.out.println("-------------------------------");
                 if (!boleto_vencido.estavivo()) {
                     break;
                 }

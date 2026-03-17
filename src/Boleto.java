@@ -4,7 +4,7 @@ public class Boleto extends Inimigo {
     }
 
     public void anunciar_ataque(){
-        System.out.println("Fofoca do Boleto: eu irei usar meu ataque de juros e causar " + this.dano + "!");
+        System.out.println("Fofoca do Boleto: eu irei usar meu ataque de juros e causar " + this.dano + " de dano!");
     }
 
     public void atacar(Heroi heroi){
