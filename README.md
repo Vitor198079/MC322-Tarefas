@@ -41,3 +41,7 @@ Utilize os comandos abaixo na raiz do projeto:
 ### 1. Compilar os arquivos-fonte
 ```bash
 javac -d bin $(find src -name "*.java")
+
+### 2. Como executar o programa
+```bash
+java -cp bin App
