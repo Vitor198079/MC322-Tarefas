@@ -1,15 +1,29 @@
+import java.util.ArrayList;
+
 public abstract class Entidade {
     //atributos privados da superclasse
     private String nome;
     private int vida;
     private int escudo;
 
+    private ArrayList<Efeito> efeitos;
     //construtor da superclasse
     public Entidade(String nome, int vida, int escudo){
         this.nome = nome;
         this.vida = vida;
         this.escudo = 0;
+        this.efeitos = new ArrayList<>();
 
+    }
+    public void aplicarEfeito(Efeito novoefeito){
+        boolean ja_tem_o_efeito = false;
+        for(Efeito e : this.efeitos){
+            if(e.getNome().equals(novoefeito.getNome())){
+                e.adicionarAcumulos(novoefeito.getAcumulos());
+                System.out.println("O efeito " + novoefeito.getNome() + " foi acumulado");
+
+            }
+        }
     }
     //Método de Receber dano
     public void receberDano(int dano){
