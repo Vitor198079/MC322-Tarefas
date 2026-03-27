@@ -20,10 +20,18 @@ public abstract class Entidade {
         for(Efeito e : this.efeitos){
             if(e.getNome().equals(novoefeito.getNome())){
                 e.adicionarAcumulos(novoefeito.getAcumulos());
-                System.out.println("O efeito " + novoefeito.getNome() + " foi acumulado");
-
+                System.out.println("O efeito " + "[" + novoefeito.getNome() + "]" +   this.nome + "foi acumulado" + " Total: " + novoefeito.getAcumulos());
+                ja_tem_o_efeito = true;
+                break;
+            }
+            this.efeitos.add(novoefeito);
+            if(!ja_tem_o_efeito){
+                System.out.println(this.nome + "foi atingido por " + "[" + novoefeito.getNome() +"] com " + novoefeito.getAcumulos() + " acúmulos");
             }
         }
+    }
+    public ArrayList<Efeito> getefeito(){
+        return this.efeitos;
     }
     //Método de Receber dano
     public void receberDano(int dano){
