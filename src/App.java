@@ -96,6 +96,31 @@ public class App{
                 if (input >= 1 && input < escolha_encerrar) {
                     Carta cartaEscolhida = mao.get(input - 1);
                     Inimigo alvo = null;
+                    if(contaInimigos(Inimigos)> 1){
+                        System.out.println("\nQuem você quer vai alvejar?");
+                        for(int i = 0; i < Inimigos.size(); i++){
+                            if(Inimigos.get(i).estaVivo()){
+                                System.out.println((i+1) + " - " + Inimigos.get(i).getNome());
+                            }
+                        }
+                        System.out.println(">>> ");
+                        int alvoId = teclado.nextInt() - 1;
+                        if(alvoId >= 0 && alvoId < Inimigos.size() && Inimigos.get(alvoId).estaVivo()){
+                            alvo = Inimigos.get(alvoId);
+                        }else{
+                            System.out.println("Alvo inválido!");
+                        }
+                    }else{
+                        for(Inimigo in : Inimigos){
+                            if(in.estaVivo()){
+                                alvo = in;
+                            }
+                        }
+                    }
+                    if(alvo != null){
+                        cartaEscolhida.usar(Silvio_Santos, alvo, gerenciador);
+                        descarte.add(mao.remove(input - 1));
+                    }
     //                 if (Silvio_Santos.getHorasdeSono() >= cartaEscolhida.getCusto()) {
     //                     cartaEscolhida.usar(Silvio_Santos, Inimigos);
     //                     descarte.add(mao.remove(input - 1));
