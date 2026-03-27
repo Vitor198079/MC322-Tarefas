@@ -6,21 +6,20 @@ public class CartaDano extends Carta{
         super(nome_carta, descricao, custo_horas_de_sono);
         this.dano = dano;
     }
-
+    public int GetDano(){
+        return dano;
+    }
     //declara a função utilizável da carta dano
-    public void usar(Heroi heroi, Inimigo inimigo){
+    public void usar(Heroi heroi, Inimigo inimigo, Publisher publisher){
         if(this.getCusto() <= heroi.getHorasdeSono()){
             heroi.perderHorasdeSono(this.getCusto());
             System.out.println("Você sacrificou " + this.getCusto() + " horas de sono para usar " + this.getNome() + "!");
-            inimigo.receberDano(this.dano);
+            inimigo.receberDano(this.GetDano());
 
         }
         else{
             System.out.println("O brasileiro tá virado! E não tem horas de sono o sufiente para usar "  + this.getNome() + ".");
         }
-    }
-    public int GetDano(){
-        return dano;
     }
 }
 

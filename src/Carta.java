@@ -8,7 +8,7 @@ public abstract class Carta {
         this.descricao = descricao;
         this.custo_horas_de_sono = custo;
     }
-    public abstract void usar(Heroi heroi, Inimigo inimigo);
+    public abstract void usar(Heroi heroi, Inimigo inimigo, Publisher publisher);
 
     public String getNome(){
         return this.nome;
