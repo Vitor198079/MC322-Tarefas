@@ -7,7 +7,11 @@ public class App{
         //recebr informações e declarar os personagens participantes
         Scanner teclado = new Scanner(System.in);
         Heroi Silvio_Santos = new Heroi("Silvio Santos", 100, 24);
-        Inimigo boleto_vencido = new Boleto("Boleto Vencido", 100, 30);
+        ArrayList<Inimigo> Inimigos = new ArrayList<>();
+        Inimigos.add(new Boleto("Fatura de Cartão", 80, 45));
+        Inimigos.add(new Boleto("Boleto Vencido", 100, 30));
+
+        GameManager gerenciador = new GameManager(Silvio_Santos, Inimigos);
 
         ArrayList<Carta> compra = new ArrayList<>();
         ArrayList<Carta> mao = new ArrayList<>();
@@ -37,17 +41,19 @@ public class App{
         compra.add(new CartaEscudo("Delivery Chegou", "Evita esforço e recupera energia", 2, 8));
         compra.add(new CartaEscudo("Bolsa Família", "Garante uma ajuda essencial nos momentos difíceis", 3, 15));
 
+        compra.add(new CartaAnsiedade("Falar em público", "Aplica 5 de ansiedade no alvo", 2, 5));
+        compra.add(new CartaAnsiedade("Mandar DM pra 10/10", "Aplica 8 de ansiedade no alvo", 5, 8));
+        compra.add(new CartaCafeina("Café da tarde", "Aplica 5 de cafeína para si mesmo", 1, 3));
+
 
         Collections.shuffle(compra);
 
         //Início da batalha
         System.out.println("===QUE COMECE A BADERNA!===");
-        System.out.println("O " + boleto_vencido.getNome() + " apareceu para cortar seu barato!");
-        System.out.println("-------------------------");
 
         //loop ocorre conforme o herói ainda está vivo
-        while(Silvio_Santos.estaVivo() && boleto_vencido.estaVivo()){
-            Silvio_Santos.IniciarTurno();
+        while(Silvio_Santos.estaVivo() && Inimigos_estao_vivos(Inimigos)){
+            gerenciador.IniciarTurno();
             boolean turno_acontecendo = true;
 
             System.out.println("\n[Comprando cartas...]");
@@ -62,14 +68,18 @@ public class App{
                     mao.add(compra.remove(0));
                 }
             }
-            boleto_vencido.anunciar_ataque();
-            //loop que ocorre conforme o inimigo ainda está vivo
-            while(turno_acontecendo && boleto_vencido.estaVivo()){
+            while(turno_acontecendo && Inimigos_estao_vivos(Inimigos)){
                 System.out.println("\n--- SEU TURNO ---");
                 System.out.println(Silvio_Santos.getNome()+ ": " +  "(" + Silvio_Santos.getVida() + "/100)" + " (" + Silvio_Santos.getEscudo() + " de escudo)");
-                System.out.println("vs.");
-                System.out.println(boleto_vencido.getNome() + ": " + "(" + boleto_vencido.getVida() + "/100)" + " (" + boleto_vencido.getEscudo() + " de escudo)");
                 System.out.println("Horas de Sono disponíveis: " + Silvio_Santos.getHorasdeSono() + "/24");
+                System.out.println("\nPerregues à vista:");
+                for(int i = 0; i < Inimigos.size(); i++){
+                    Inimigo in = Inimigos.get(i);
+                    if(in.estaVivo()){
+                        System.out.println((i+1) + " - " + in.getNome() + " (" + in.getVida() + " pontos de vida");
+                    }
+                }
+
 
                 System.out.println("\nEscolha sua gambiarra:");
                 int escolha = 1;
@@ -85,42 +95,43 @@ public class App{
                 System.out.println("-------------------------------");
                 if (input >= 1 && input < escolha_encerrar) {
                     Carta cartaEscolhida = mao.get(input - 1);
-                    if (Silvio_Santos.getHorasdeSono() >= cartaEscolhida.getCusto()) {
-                        cartaEscolhida.usar(Silvio_Santos, boleto_vencido);
-                        descarte.add(mao.remove(input - 1));
-                    } else {
-                        System.out.println("Você tá muito cansado para essa jogada agora! Durma mais!");
-                    }
-                    System.out.println("-------------------------------");
-                } 
-                else if (input == escolha_encerrar) {
-                    System.out.println("Você encerrou seu turno e foi de base (dormir)");
-                    turno_acontecendo = false;
-                } 
-                else {
-                    System.out.println("Opção inválida! Ansiedade bateu!, digite um número válido.");
-                    System.out.println("-------------------------------");
-                } 
-                if (!boleto_vencido.estaVivo()) {
-                    break;
-                }
+                    Inimigo alvo = null;
+    //                 if (Silvio_Santos.getHorasdeSono() >= cartaEscolhida.getCusto()) {
+    //                     cartaEscolhida.usar(Silvio_Santos, Inimigos);
+    //                     descarte.add(mao.remove(input - 1));
+    //                 } else {
+    //                     System.out.println("Você tá muito cansado para essa jogada agora! Durma mais!");
+    //                 }
+    //                 System.out.println("-------------------------------");
+    //             } 
+    //             else if (input == escolha_encerrar) {
+    //                 System.out.println("Você encerrou seu turno e foi de base (dormir)");
+    //                 turno_acontecendo = false;
+    //             } 
+    //             else {
+    //                 System.out.println("Opção inválida! Ansiedade bateu!, digite um número válido.");
+    //                 System.out.println("-------------------------------");
+    //             } 
+    //             if (!boleto_vencido.estaVivo()) {
+    //                 break;
+    //             }
 
-                if (mao.isEmpty() && turno_acontecendo) {
-                    System.out.println("Você ficou sem cartas na mão! Fim do turno.");
-                    turno_acontecendo = false;
-                }
-            }
-        if(!mao.isEmpty()){
-            descarte.addAll(mao);
-            mao.clear();
-            System.out.println("Gambiarras que sobraram na sua mão foram descartadas");
-        }
-        if(boleto_vencido.estaVivo()){
-            System.out.println("\n--- TURNO DO PERRENGUE ---");
-            boleto_vencido.atacar(Silvio_Santos);
-            System.out.println("-------------------------------");
-        }
-    }
+    //             if (mao.isEmpty() && turno_acontecendo) {
+    //                 System.out.println("Você ficou sem cartas na mão! Fim do turno.");
+    //                 turno_acontecendo = false;
+    //             }
+    //         }
+    //     if(!mao.isEmpty()){
+    //         descarte.addAll(mao);
+    //         mao.clear();
+    //         System.out.println("Gambiarras que sobraram na sua mão foram descartadas");
+    //     }
+    //     if(boleto_vencido.estaVivo()){
+    //         System.out.println("\n--- TURNO DO PERRENGUE ---");
+    //         boleto_vencido.atacar(Silvio_Santos);
+    //         System.out.println("-------------------------------");
+    //     }
+    // }
     System.out.println("\n=== FIM DA BADERNA ===");
     if(Silvio_Santos.estaVivo()){
         System.out.println("VITÓRIA! Você venceu o sistema e não vai pro Vasco da Gama!");
@@ -129,5 +140,22 @@ public class App{
     }
 
         teclado.close(); 
+    }
+    private static boolean Inimigos_estao_vivos(ArrayList<Inimigo> inimigos){
+        for(Inimigo in : inimigos){
+            if(in.estaVivo()){
+                return true;
+            }
+        }
+        return false;
+    }
+    private static int contaInimigos(ArrayList<Inimigo> inimigos){
+        int cont = 0;
+        for(Inimigo in : inimigos){
+            if(in.estaVivo()){
+                cont++;
+            }
+        }
+        return cont;
     }
 }
