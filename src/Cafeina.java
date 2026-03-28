@@ -4,7 +4,7 @@ public class Cafeina extends Efeito {
     }
 
     public void serNotificado(String evento){
-        if(evento.equals("INICIAR_BADERNA_" + this.getDono().getNome())) {
+        if(evento.equals("INICIO_BADERNA_" + this.getDono().getNome())) {
             if(this.getAcumulos() > 0){
                 System.out.println("PODER DA CAFEÍNA! " + this.getDono().getNome() +  " ganhou " + this.getAcumulos() + " de escudo extra do café.");
                 this.getDono().ganharEscudo(this.getAcumulos());
