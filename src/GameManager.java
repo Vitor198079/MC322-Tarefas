@@ -37,7 +37,6 @@ public class GameManager implements Publisher {
         System.out.println("\n================================");
         System.out.println("=== FIM DO TURNO DE " + heroi.getNome().toUpperCase() + " ===");
         notificar("FIM_BADERNA_" + heroi.getNome());
-        heroi.IniciarTurno();
     }
 
     public void turno_inimigos(){
@@ -47,10 +46,10 @@ public class GameManager implements Publisher {
         for(Inimigo inimigo : inimigos){
             if(inimigo.estaVivo()){
                 System.out.println("\n Vez de " + inimigo.getNome());
-                notificar("INICIO_BADERNA " + inimigo.getNome());
+                notificar("INICIO_BADERNA_" + inimigo.getNome());
 
                 inimigo.atacar(heroi);
-                notificar("FIM_BADERNA " + inimigo.getNome());
+                notificar("FIM_BADERNA_" + inimigo.getNome());
             }
         }
     }
