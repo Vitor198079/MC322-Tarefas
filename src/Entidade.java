@@ -24,10 +24,10 @@ public abstract class Entidade {
                 ja_tem_o_efeito = true;
                 break;
             }
+        }
+        if(!ja_tem_o_efeito){
             this.efeitos.add(novoefeito);
-            if(!ja_tem_o_efeito){
-                System.out.println(this.nome + "foi atingido por " + "[" + novoefeito.getNome() +"] com " + novoefeito.getAcumulos() + " acúmulos");
-            }
+            System.out.println(this.nome + "foi atingido por " + "[" + novoefeito.getNome() +"] com " + novoefeito.getAcumulos() + " acúmulos");
         }
     }
     public ArrayList<Efeito> getefeito(){

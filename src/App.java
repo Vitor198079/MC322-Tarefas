@@ -76,7 +76,7 @@ public class App{
                 for(int i = 0; i < Inimigos.size(); i++){
                     Inimigo in = Inimigos.get(i);
                     if(in.estaVivo()){
-                        System.out.println((i+1) + " - " + in.getNome() + " (" + in.getVida() + " pontos de vida");
+                        System.out.println((i+1) + " - " + in.getNome() + " (" + in.getVida() + " pontos de vida)");
                     }
                 }
 
@@ -121,7 +121,7 @@ public class App{
                         cartaEscolhida.usar(Silvio_Santos, alvo, gerenciador);
                         descarte.add(mao.remove(input - 1));
                     }
-                }else if(escolha == escolha_encerrar){
+                }else if(input == escolha_encerrar){
                     turno_acontecendo = false;
                 }else{
                     System.out.println("Opção inválida!");

@@ -8,7 +8,7 @@ public class CartaAnsiedade extends Carta {
 
     public void usar(Heroi heroi, Inimigo alvo, Publisher publisher){
         if(this.getCusto() <= heroi.getHorasdeSono()){
-            heroi.perderHorasdeSono(quantidade_ansiedade);
+            heroi.perderHorasdeSono(this.getCusto());
             System.out.println("Você induziu um gatilho mental usando [" + this.getNome() +"] no " + alvo.getNome() +"!");
             Ansiedade debuff = new Ansiedade(alvo, this.quantidade_ansiedade);
             alvo.aplicarEfeito(debuff);

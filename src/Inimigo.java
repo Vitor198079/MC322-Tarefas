@@ -6,6 +6,6 @@ public abstract class Inimigo extends Entidade {
         this.dano = dano;
     }
     public abstract void anunciar_ataque();
-    public abstract void atacar(Heroi heroi);
+    public abstract void atacar(Heroi heroi, Publisher publisher);
 
 }

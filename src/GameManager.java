@@ -48,7 +48,7 @@ public class GameManager implements Publisher {
                 System.out.println("\n Vez de " + inimigo.getNome());
                 notificar("INICIO_BADERNA_" + inimigo.getNome());
 
-                inimigo.atacar(heroi);
+                inimigo.atacar(heroi, this);
                 notificar("FIM_BADERNA_" + inimigo.getNome());
             }
         }
