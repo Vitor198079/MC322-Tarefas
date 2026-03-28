@@ -4,7 +4,7 @@ public class GameManager implements Publisher {
     private Heroi heroi;
     private ArrayList<Inimigo> inimigos;
 
-    public GameManager(Heroi heroi, ArrayList<Inimigo> inimigos){
+    public GameManager(Heroi heroi, ArrayList<Inimigo> inimigos ){
         this.inscritos = new ArrayList<>();
         this.heroi = heroi;
         this.inimigos = inimigos;

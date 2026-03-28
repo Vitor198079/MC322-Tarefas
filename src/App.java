@@ -121,42 +121,28 @@ public class App{
                         cartaEscolhida.usar(Silvio_Santos, alvo, gerenciador);
                         descarte.add(mao.remove(input - 1));
                     }
-    //                 if (Silvio_Santos.getHorasdeSono() >= cartaEscolhida.getCusto()) {
-    //                     cartaEscolhida.usar(Silvio_Santos, Inimigos);
-    //                     descarte.add(mao.remove(input - 1));
-    //                 } else {
-    //                     System.out.println("Você tá muito cansado para essa jogada agora! Durma mais!");
-    //                 }
-    //                 System.out.println("-------------------------------");
-    //             } 
-    //             else if (input == escolha_encerrar) {
-    //                 System.out.println("Você encerrou seu turno e foi de base (dormir)");
-    //                 turno_acontecendo = false;
-    //             } 
-    //             else {
-    //                 System.out.println("Opção inválida! Ansiedade bateu!, digite um número válido.");
-    //                 System.out.println("-------------------------------");
-    //             } 
-    //             if (!boleto_vencido.estaVivo()) {
-    //                 break;
-    //             }
+                }else if(escolha == escolha_encerrar){
+                    turno_acontecendo = false;
+                }else{
+                    System.out.println("Opção inválida!");
 
-    //             if (mao.isEmpty() && turno_acontecendo) {
-    //                 System.out.println("Você ficou sem cartas na mão! Fim do turno.");
-    //                 turno_acontecendo = false;
-    //             }
-    //         }
-    //     if(!mao.isEmpty()){
-    //         descarte.addAll(mao);
-    //         mao.clear();
-    //         System.out.println("Gambiarras que sobraram na sua mão foram descartadas");
-    //     }
-    //     if(boleto_vencido.estaVivo()){
-    //         System.out.println("\n--- TURNO DO PERRENGUE ---");
-    //         boleto_vencido.atacar(Silvio_Santos);
-    //         System.out.println("-------------------------------");
-    //     }
-    // }
+                }
+                if(mao.isEmpty() && turno_acontecendo){
+                    System.out.println("Ficou sem gambiarras! Fim do turno");
+                    turno_acontecendo = false;
+                }
+            }
+        if(!mao.isEmpty()){
+            descarte.addAll(mao);
+            mao.clear();
+            System.out.println("Gambiarras que sobraram na sua mão foram descartadas");
+        }
+        gerenciador.finalizarTurno();
+
+        if(Inimigos_estao_vivos(Inimigos)){
+            gerenciador.turno_inimigos();
+        }
+    }
     System.out.println("\n=== FIM DA BADERNA ===");
     if(Silvio_Santos.estaVivo()){
         System.out.println("VITÓRIA! Você venceu o sistema e não vai pro Vasco da Gama!");
