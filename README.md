@@ -1,4 +1,4 @@
-# 🎮 HueHue Br! Duel Game - Edição "Sobrevivendo ao Semestre" (Tarefa 3)
+# 🎮 HueHue Br! Duel Game - Edição Tarefa 3
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Unicamp](https://img.shields.io/badge/Unicamp-IC-red?style=for-the-badge)
@@ -9,7 +9,7 @@ Seja bem-vindo ao **HueHue Br! Duel Game**, um simulador de "perrengues" brasile
 
 ## 📖 O que mudou na Tarefa 3?
 
-Se na tarefa anterior aprendemos a organizar a "bagunça" com herança, agora o jogo ganhou **alma**. Implementamos o padrão de projeto **Observer**, o que significa que o mundo ao seu redor agora reage às suas ações. 
+Se na tarefa anterior aprendemos a organizar com herança, agora o jogo ganhou **alma**. Implementamos o padrão de projeto **Observer**, o que significa que o mundo ao seu redor agora reage às suas ações. 
 
 Agora não é só bater e defender. Você pode ficar ansioso, pode tomar um café pra aguentar o tranco, e os inimigos... bem, eles aprenderam a jogar sujo.
 
@@ -17,7 +17,7 @@ Agora não é só bater e defender. Você pode ficar ansioso, pode tomar um caf�
 
 ## 🏗️ Por baixo do capô (Arquitetura)
 
-Para os avaliadores de plantão, o projeto utiliza o padrão **Observer** para gerenciar os efeitos de status:
+O projeto utiliza o padrão **Observer** para gerenciar os efeitos de status:
 
 * **O Maestro (`GameManager`):** Ele é o nosso *Publisher*. Ele dita o ritmo da "baderna", avisando a todos os interessados quando um turno começa ou termina.
 * **Os Espectadores (`Efeito`):** São os *Subscribers*. Eles ficam de olho no `GameManager`. Quando ouvem "Ei, o turno do Silvio Santos acabou!", o efeito de Ansiedade acorda e causa dano.
