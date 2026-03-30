@@ -6,11 +6,11 @@ public class App{
         Scanner teclado = new Scanner(System.in);
         
 
-        Heroi Silvio_Santos = new Heroi("Silvio Santos", 100, 10);
+        Heroi Silvio_Santos = new Heroi("Silvio Santos", 100, 12);
         
         ArrayList<Inimigo> Inimigos = new ArrayList<>();
-        Inimigos.add(new Boleto("Fatura de Cartão", 80, 45));
-        Inimigos.add(new Boleto("Boleto Vencido", 100, 30));
+        Inimigos.add(new Boleto("Fatura de Cartão", 80, 35));
+        Inimigos.add(new Boleto("Boleto Vencido", 100, 20));
 
         GameManager gerenciador = new GameManager(Silvio_Santos, Inimigos);
         
@@ -53,33 +53,48 @@ public class App{
                     Carta cartaEscolhida = baralho.getMao().get(input - 1);
                     Inimigo alvo = null;
                     
-                    if(contaInimigos(Inimigos)> 1){
-                        System.out.println("\nQuem você quer vai alvejar?");
-                        for(int i = 0; i < Inimigos.size(); i++){
-                            if(Inimigos.get(i).estaVivo()){
-                                System.out.println((i+1) + " - " + Inimigos.get(i).getNome());
+                    //Verifica se a carta é de defesa/buff
+                    boolean ehCartaDeDefesa = (cartaEscolhida instanceof CartaEscudo) || (cartaEscolhida instanceof CartaCafeina);
+                    
+                    if (!ehCartaDeDefesa) {
+                        //Lógica para cartas de dano e ansiedade
+                        if(contaInimigos(Inimigos) > 1){
+                            System.out.println("\nQuem você vai alvejar?");
+                            for(int i = 0; i < Inimigos.size(); i++){
+                                if(Inimigos.get(i).estaVivo()){
+                                    System.out.println((i+1) + " - " + Inimigos.get(i).getNome());
+                                }
+                            }
+                            System.out.print(">>> ");
+                            int alvoId = teclado.nextInt() - 1;
+                            if(alvoId >= 0 && alvoId < Inimigos.size() && Inimigos.get(alvoId).estaVivo()){
+                                alvo = Inimigos.get(alvoId);
+                            } else {
+                                System.out.println("Alvo inválido!");
+                            }
+                        } else {
+                            for(Inimigo in : Inimigos){
+                                if(in.estaVivo()){
+                                    alvo = in;
+                                    break;
+                                }
                             }
                         }
-                        System.out.print(">>> ");
-                        int alvoId = teclado.nextInt() - 1;
-                        if(alvoId >= 0 && alvoId < Inimigos.size() && Inimigos.get(alvoId).estaVivo()){
-                            alvo = Inimigos.get(alvoId);
-                        }else{
-                            System.out.println("Alvo inválido!");
-                        }
-                    }else{
+                    } else {
                         for(Inimigo in : Inimigos){
                             if(in.estaVivo()){
                                 alvo = in;
+                                break;
                             }
                         }
                     }
+                    
                     if(alvo != null){
                         cartaEscolhida.usar(Silvio_Santos, alvo, gerenciador);
-                        //joga para descarte
                         baralho.cartaUsadaParaDescarte(input - 1);
                     }
-                }else if(input == escolha_encerrar){
+                    
+                } else if(input == escolha_encerrar) {
                     turno_acontecendo = false;
                 }else{
                     System.out.println("Opção inválida!");

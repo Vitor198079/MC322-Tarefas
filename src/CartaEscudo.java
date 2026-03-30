@@ -11,7 +11,7 @@ public class CartaEscudo extends Carta{
     public void usar(Heroi heroi, Inimigo inimigo, Publisher publisher){
         if(this.getCusto() <= heroi.getHorasdeSono()){
             heroi.perderHorasdeSono(this.getCusto());
-            System.out.println("Você de o migué e usou " + this.getNome() + "!");
+            System.out.println("Você deu o migué e usou " + this.getNome() + "!");
             heroi.ganharEscudo(this.valor_migue);
         }
         else{

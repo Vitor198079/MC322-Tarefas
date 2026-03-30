@@ -20,7 +20,7 @@ public abstract class Entidade {
         for(Efeito e : this.efeitos){
             if(e.getNome().equals(novoefeito.getNome())){
                 e.adicionarAcumulos(novoefeito.getAcumulos());
-                System.out.println("O efeito " + "[" + novoefeito.getNome() + "]" +   this.nome + " foi acumulado" + " Total: " + novoefeito.getAcumulos());
+                System.out.println("O efeito " + "[" + novoefeito.getNome() + "] " +   this.nome + " foi acumulado" + " Total: " + novoefeito.getAcumulos() + " acúmulos");
                 ja_tem_o_efeito = true;
                 break;
             }
