@@ -26,7 +26,7 @@ public class App{
             while(turno_acontecendo && Inimigos_estao_vivos(Inimigos)){
                 System.out.println("\n--- SEU TURNO ---");
                 System.out.println(Silvio_Santos.getNome()+ ": " +  "(" + Silvio_Santos.getVida() + "/100)" + " (" + Silvio_Santos.getEscudo() + " de escudo)");
-                System.out.println("Horas de Sono disponíveis: " + Silvio_Santos.getHorasdeSono() + "/10"); // Atualizado para 10
+                System.out.println("Horas de Sono disponíveis: " + Silvio_Santos.getHorasdeSono() + "/12");
                 System.out.println("\nPerrengues à vista:");
                 
                 for(int i = 0; i < Inimigos.size(); i++){
