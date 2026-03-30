@@ -16,16 +16,16 @@ public class Baralho {
     //Inicializa embaralhado
     private void inicializarBaralho() {
         //Cartas Dano
-        compra.add(new CartaDano("Jogar no Paredão", "Coloca o inimigo pra votação popular da casa", 3, 8));
-        compra.add(new CartaDano("Esqueceu a senha do GOV", "Faz o inimigo perder tempo recuperando a senha", 2, 5));
-        compra.add(new CartaDano("Chuva no Litoral", "Atrapalha todos os planos e deixa tudo um caos", 4, 12));
-        compra.add(new CartaDano("Greve de Ônibus", "O inimigo fica preso e perde produtividade", 5, 15));
-        compra.add(new CartaDano("Fila do SUS", "Faz o inimigo esperar por horas intermináveis", 6, 18));
-        compra.add(new CartaDano("Prova Surpresa", "Pega desprevenido e causa desespero imediato", 3, 10));
-        compra.add(new CartaDano("Trânsito na Marginal", "Paralisa completamente o inimigo", 7, 20));
-        compra.add(new CartaDano("Internet Caiu", "Interrompe tudo no pior momento possível", 2, 6));
-        compra.add(new CartaDano("Calor de 40 Graus", "Drena energia e causa sofrimento", 4, 11));
-        compra.add(new CartaDano("Golpe do Pix", "Confunde o inimigo e causa prejuízo", 5, 14));
+        compra.add(new CartaDano("Jogar no Paredão", "Coloca o inimigo pra votação popular da casa", 3, 20));
+        compra.add(new CartaDano("Esqueceu a senha do GOV", "Faz o inimigo perder tempo recuperando a senha", 2, 15));
+        compra.add(new CartaDano("Chuva no Litoral", "Atrapalha todos os planos e deixa tudo um caos", 4, 21));
+        compra.add(new CartaDano("Greve de Ônibus", "O inimigo fica preso e perde produtividade", 5, 30));
+        compra.add(new CartaDano("Fila do SUS", "Faz o inimigo esperar por horas intermináveis", 6, 25));
+        compra.add(new CartaDano("Prova Surpresa", "Pega desprevenido e causa desespero imediato", 3, 35));
+        compra.add(new CartaDano("Trânsito na Marginal", "Paralisa completamente o inimigo", 7, 40));
+        compra.add(new CartaDano("Internet Caiu", "Interrompe tudo no pior momento possível", 2, 12));
+        compra.add(new CartaDano("Calor de 40 Graus", "Drena energia e causa sofrimento", 4, 25));
+        compra.add(new CartaDano("Golpe do Pix", "Confunde o inimigo e causa prejuízo", 5, 50));
 
         //Cartas Escudo
         compra.add(new CartaEscudo("Atestado Médico", "O famoso migué de não trabalhar por 'saúde'", 1, 8));
