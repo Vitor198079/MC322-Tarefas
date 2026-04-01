@@ -44,6 +44,12 @@ public class Baralho {
         compra.add(new CartaAnsiedade("Mandar DM pra mina 10/10", "Aplica 8 de ansiedade no alvo", 5, 8));
         compra.add(new CartaCafeina("Café da tarde", "Aplica 5 de cafeína para si mesmo", 1, 3));
 
+        //Novas Cartas
+        compra.add(new CartaAnsiedade("Reunião com o chefe", "Aplica 4 de ansiedade no alvo", 2, 4));
+        compra.add(new CartaCafeina("Energético da Shopee", "Aplica 5 de Cafeína em si mesmo", 1, 5));
+        compra.add(new CartaDano("RunTimeError", "Causa 40 de dano e faz você ficar insano", 8, 40));
+        compra.add(new CartaEscudo("Fone com Cancelamento de Ruído", "Ignora o mundo externo e ganha 20 de escudo", 3, 20));
+        compra.add(new CartaHibrida("Expor no Twitter/X", "Causa 12 de dano e aplica 5 de Ansiedade", 3, 12, 5));
         Collections.shuffle(compra);
     }
 
