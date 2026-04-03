@@ -16,7 +16,12 @@ public class App{
         
         Baralho baralho = new Baralho();
 
-        System.out.println("===QUE COMECE A BADERNA!===");
+        String silvio = Arte.imprimir("src/main/resources/terminal_artstle/Silvio.txt");
+        String boleto = Arte.imprimir("src/main/resources/terminal_artstle/Boleto.txt");
+        String cartao = Arte.imprimir("src/main/resources/terminal_artstle/Cartao.txt");
+
+        System.out.println(Cores.AMARELO + "===QUE COMECE A BADERNA!===" + Cores.RESET);
+        Terminal.pausar(2000);
 
         while(Silvio_Santos.estaVivo() && Inimigos_estao_vivos(Inimigos)){
             gerenciador.IniciarTurno();
@@ -24,15 +29,22 @@ public class App{
             baralho.comprarCartas(3);
 
             while(turno_acontecendo && Inimigos_estao_vivos(Inimigos)){
-                System.out.println("\n--- SEU TURNO ---");
-                System.out.println(Silvio_Santos.getNome()+ ": " +  "(" + Silvio_Santos.getVida() + "/100)" + " (" + Silvio_Santos.getEscudo() + " de escudo)");
-                System.out.println("Horas de Sono disponíveis: " + Silvio_Santos.getHorasdeSono() + "/12");
-                System.out.println("\nPerrengues à vista:");
+                Terminal.limparTela();
+                System.out.println(Cores.AMARELO + "\n--- SEU TURNO ---" + Cores.RESET);
+                System.out.println(Cores.AZUL + silvio + Cores.RESET);
+                System.out.println(Cores.AZUL + Silvio_Santos.getNome()+ ": " +  "(" + Silvio_Santos.getVida() + "/100)" + " (" + Silvio_Santos.getEscudo() + " de escudo)" + Cores.RESET);
+                System.out.println(Cores.CIANO + "Horas de Sono disponíveis: " + Silvio_Santos.getHorasdeSono() + "/12" + Cores.RESET);
+                System.out.println(Cores.VERMELHO + "\nPerrengues à vista:" + Cores.RESET);
                 
                 for(int i = 0; i < Inimigos.size(); i++){
                     Inimigo in = Inimigos.get(i);
                     if(in.estaVivo()){
-                        System.out.println((i+1) + " - " + in.getNome() + " (" + in.getVida() + " pontos de vida)");
+                        if(in.getNome().equals("Fatura de Cartão")){
+                            System.out.println(Cores.VERMELHO + cartao + Cores.RESET);
+                        } else if(in.getNome().equals("Boleto Vencido")){
+                            System.out.println(Cores.VERMELHO + boleto + Cores.RESET);
+                        }
+                        System.out.println(Cores.VERMELHO + (i+1) + " - " + in.getNome() + " (" + in.getVida() + " pontos de vida)" + Cores.RESET);
                     }
                 }
 
@@ -71,6 +83,7 @@ public class App{
                                 alvo = Inimigos.get(alvoId);
                             } else {
                                 System.out.println("Alvo inválido!");
+                                Terminal.pausar(1500);
                             }
                         } else {
                             for(Inimigo in : Inimigos){
@@ -92,16 +105,19 @@ public class App{
                     if(alvo != null){
                         cartaEscolhida.usar(Silvio_Santos, alvo, gerenciador);
                         baralho.cartaUsadaParaDescarte(input - 1);
+                        Terminal.pausar(2500);
                     }
                     
                 } else if(input == escolha_encerrar) {
                     turno_acontecendo = false;
                 }else{
                     System.out.println("Opção inválida!");
+                    Terminal.pausar(1500);
                 }
                 
                 if(baralho.maoEstaVazia() && turno_acontecendo){
                     System.out.println("Ficou sem gambiarras! Fim do turno");
+                    Terminal.pausar(2000);
                     turno_acontecendo = false;
                 }
             } // Fim Turno do Jogador
@@ -111,14 +127,16 @@ public class App{
         gerenciador.finalizarTurno();
 
         if(Inimigos_estao_vivos(Inimigos)){
+            System.out.println(Cores.VERMELHO + "\n--- TURNO DOS PERRENGUES ---" + Cores.RESET);
             gerenciador.turno_inimigos();
+            Terminal.pausar(3500);
         }
     }
-    System.out.println("\n=== FIM DA BADERNA ===");
+    System.out.println(Cores.AMARELO + "\n=== FIM DA BADERNA ===" + Cores.RESET);
     if(Silvio_Santos.estaVivo()){
-        System.out.println("VITÓRIA! Você venceu o sistema e não vai pro Vasco da Gama!");
+        System.out.println(Cores.VERDE + "VITÓRIA! Você venceu o sistema e não vai pro Vasco da Gama!" + Cores.RESET);
     }else{
-        System.out.println("DERROTA! O perrengue te derrotou, espere pela contratação do Vasco.");
+        System.out.println(Cores.VERMELHO + "DERROTA! O perrengue te derrotou, espere pela contratação do Vasco." + Cores.RESET);
     }
 
         teclado.close(); 

@@ -15,7 +15,7 @@ public class CartaHibrida extends Carta {
             System.out.println("O seu hate causou " + this.dano + " de dano!");
             inimigo.receberDano(this.dano);
 
-            Ansiedade debuff = new Ansieda(alvo, this.quantidade_ansiedade);
+            Ansiedade debuff = new Ansiedade(inimigo, this.quantidade_ansiedade);
             inimigo.aplicarEfeito(debuff);
             publisher.inscrever(debuff);
         }else{
