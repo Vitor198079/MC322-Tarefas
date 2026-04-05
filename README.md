@@ -21,11 +21,11 @@ Não precisa mais adivinhar o que um método faz. Utilizamos o **Javadoc** para 
 
 ### 3. Expansão do Baralho de Sobrevivência 🃏
 Implementamos 5 novas cartas que utilizam os sistemas de herança e polimorfismo para interagir com o estado do jogador:
-* **☕ Café Expresso:** Gera acúmulos de Cafeína para proteção futura.
-* **😰 Gatilho Mental:** Aplica Ansiedade no inimigo (dano passivo por pressão psicológica).
-* **🐦 Hate no Twitter:** Carta híbrida que causa dano direto e aplica debuffs.
-* **😏 Dar um Migué:** A estratégia defensiva essencial para ganhar fôlego.
-* **💥 Lapada Seca:** Ataque de alto impacto que consome uma quantidade generosa de sono.
+* **Reunião com o chefe**
+* **Energético da Shopee**
+* **RunTimeError** 
+* **Fone com Cancelamento de Ruído**
+* **Expor no Twitter/X**
 
 ---
 
