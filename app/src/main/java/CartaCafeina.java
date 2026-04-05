@@ -1,10 +1,25 @@
+/**
+ * Representa a ação de consumir café para ganhar proteção extra.
+ * O café gera acúmulos que se transformam em escudo nos turnos seguintes.
+ */
 public class CartaCafeina extends Carta {
     private int quantidade_cafe;
+
+    /**
+     * Construtor da carta de cafeína.
+     * @param nome Nome da marca ou tipo de café.
+     * @param descricao Texto sobre a "disposição" gerada.
+     * @param custo Custo em horas de sono para realizar a ação.
+     * @param quantidade_cafe Número de doses/acúmulos concedidos.
+     */
     public CartaCafeina(String nome, String descricao, int custo, int quantidade_cafe){
         super(nome, descricao, custo);
         this.quantidade_cafe = quantidade_cafe;
     }
 
+    /**
+     * Consome a carta, aplicando o efeito de Cafeína ao herói se houver energia disponível.
+     */
     public void usar(Heroi heroi, Inimigo alvo, Publisher publisher){
         if(this.getCusto() <= heroi.getHorasdeSono()){
             heroi.perderHorasdeSono(this.getCusto());

@@ -1,11 +1,18 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Representa o baralho do jogador, controlando as cartas de compra,
+ * mão e descarte ao longo da partida.
+ */
 public class Baralho {
     private ArrayList<Carta> compra;
     private ArrayList<Carta> mao;
     private ArrayList<Carta> descarte;
 
+    /**
+     * Inicializa o baralho e prepara as cartas para o jogo.
+     */
     public Baralho() {
         this.compra = new ArrayList<>();
         this.mao = new ArrayList<>();
@@ -13,7 +20,9 @@ public class Baralho {
         inicializarBaralho();
     }
 
-    //Inicializa embaralhado
+    /**
+     * Preenche o baralho com cartas e realiza o embaralhamento inicial.
+     */
     private void inicializarBaralho() {
         //Cartas Dano
         compra.add(new CartaDano("Jogar no Paredão", "Coloca o inimigo pra votação popular da casa", 3, 30));
@@ -53,6 +62,11 @@ public class Baralho {
         Collections.shuffle(compra);
     }
 
+    /**
+     * Compra uma quantidade de cartas para a mão do jogador.
+     *
+     * @param quantidade número de cartas a serem compradas
+     */
     public void comprarCartas(int quantidade) {
         System.out.println("\n[Comprando cartas...]");
         for (int i = 0; i < quantidade; i++) {
@@ -68,14 +82,27 @@ public class Baralho {
         }
     }
 
+    /**
+     * Retorna a lista de cartas atualmente na mão do jogador.
+     *
+     * @return lista de cartas na mão
+     */
     public ArrayList<Carta> getMao() {
         return this.mao;
     }
 
+    /**
+     * Move uma carta utilizada da mão para o descarte.
+     *
+     * @param index posição da carta na mão
+     */
     public void cartaUsadaParaDescarte(int index) {
         descarte.add(mao.remove(index));
     }
 
+    /**
+     * Descarta todas as cartas restantes na mão ao final do turno.
+     */
     public void descartarMaoRestante() {
         if (!mao.isEmpty()) {
             descarte.addAll(mao);
@@ -84,6 +111,11 @@ public class Baralho {
         }
     }
 
+    /**
+     * Verifica se a mão do jogador está vazia.
+     *
+     * @return true se a mão estiver vazia, false caso contrário
+     */
     public boolean maoEstaVazia() {
         return mao.isEmpty();
     }

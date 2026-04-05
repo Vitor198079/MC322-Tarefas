@@ -1,11 +1,19 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Classe principal responsável por executar o jogo e controlar o fluxo geral
+ * da partida, incluindo turnos do jogador e dos inimigos.
+ */
 public class App{
+    /**
+     * Ponto de entrada do programa. Inicializa os elementos do jogo e executa o loop principal.
+     *
+     * @param args argumentos da linha de comando
+     */
     public static void main(String[] args){
         Scanner teclado = new Scanner(System.in);
         
-
         Heroi Silvio_Santos = new Heroi("Silvio Santos", 100, 12);
         
         ArrayList<Inimigo> Inimigos = new ArrayList<>();
@@ -65,11 +73,9 @@ public class App{
                     Carta cartaEscolhida = baralho.getMao().get(input - 1);
                     Inimigo alvo = null;
                     
-                    //Verifica se a carta é de defesa/buff
                     boolean ehCartaDeDefesa = (cartaEscolhida instanceof CartaEscudo) || (cartaEscolhida instanceof CartaCafeina);
                     
                     if (!ehCartaDeDefesa) {
-                        //Lógica para cartas de dano e ansiedade
                         if(contaInimigos(Inimigos) > 1){
                             System.out.println("\nQuem você vai alvejar?");
                             for(int i = 0; i < Inimigos.size(); i++){
@@ -120,9 +126,8 @@ public class App{
                     Terminal.pausar(2000);
                     turno_acontecendo = false;
                 }
-            } // Fim Turno do Jogador
+            }
             
-        //Limpar as cartas que sobraram
         baralho.descartarMaoRestante();
         gerenciador.finalizarTurno();
 
@@ -142,6 +147,9 @@ public class App{
         teclado.close(); 
     }
     
+    /**
+     * Verifica se ainda há inimigos vivos.
+     */
     private static boolean Inimigos_estao_vivos(ArrayList<Inimigo> inimigos){
         for(Inimigo in : inimigos){
             if(in.estaVivo()){
@@ -151,6 +159,9 @@ public class App{
         return false;
     }
     
+    /**
+     * Conta quantos inimigos ainda estão vivos.
+     */
     private static int contaInimigos(ArrayList<Inimigo> inimigos){
         int cont = 0;
         for(Inimigo in : inimigos){
