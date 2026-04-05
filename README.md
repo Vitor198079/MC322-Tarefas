@@ -59,3 +59,9 @@ Esqueça os scripts complexos. Agora basta usar o Wrapper do Gradle:
 **Compilar o projeto:**
 ```bash
 ./gradlew build
+```
+
+**Rodar o projeto:**
+```bash
+./gradlew run
+```
