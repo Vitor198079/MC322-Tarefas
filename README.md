@@ -1,63 +1,61 @@
-# 🎮 HueHue Br! Duel Game - Edição Tarefa 3
+# 🎮 HueHue Br! Duel Game - Edição Profissional (Tarefa 4)
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
 ![Unicamp](https://img.shields.io/badge/Unicamp-IC-red?style=for-the-badge)
 
-Seja bem-vindo ao **HueHue Br! Duel Game**, um simulador de "perrengues" brasileiros onde o seu maior inimigo não é um dragão, mas sim o **Boleto Vencido**. Inspirado na mecânica de *Slay the Spire*, aqui você luta para manter sua sanidade (e sua vida) usando o que o brasileiro tem de melhor: a gambiarra e o café.
+Se o **Boleto Vencido** era um problema, agora ele está documentado, compilado e gerenciado com rigor profissional. Bem-vindo à quarta iteração do **HueHue Br!**, onde a gambiarra brasileira encontrou a engenharia de software de elite. 
+
+Nesta fase, abandonamos a compilação manual e abraçamos o **Gradle**, documentamos com **Javadoc** e expandimos o arsenal de sobrevivência do brasileiro com novas mecânicas de sono e exaustão.
 
 ---
 
-## 📖 O que mudou na Tarefa 3?
+## 🏗️ O que mudou na Tarefa 4? (Engenharia de Software)
 
-Se na tarefa anterior aprendemos a organizar com herança, agora o jogo ganhou **alma**. Implementamos o padrão de projeto **Observer**, o que significa que o mundo ao seu redor agora reage às suas ações. 
+### 1. Adeus, `javac` manual! (Build Automation) 🛠️
+O projeto agora é totalmente automatizado via **Gradle**. A estrutura foi refatorada para o padrão de mercado (`src/main/java`), garantindo que o build seja reproduzível em qualquer máquina sem configurar caminhos manualmente.
 
-Agora não é só bater e defender. Você pode ficar ansioso, pode tomar um café pra aguentar o tranco, e os inimigos... bem, eles aprenderam a jogar sujo.
+### 2. Documentação (Javadoc) 📚
+Não precisa mais adivinhar o que um método faz. Utilizamos o **Javadoc** para documentar a lógica de jogo, os parâmetros de cada carta e o comportamento dos efeitos. 
+* Gere o HTML e veja a arquitetura de forma clara e profissional.
+
+### 3. Expansão do Baralho de Sobrevivência 🃏
+Implementamos 5 novas cartas que utilizam os sistemas de herança e polimorfismo para interagir com o estado do jogador:
+* **☕ Café Expresso:** Gera acúmulos de Cafeína para proteção futura.
+* **😰 Gatilho Mental:** Aplica Ansiedade no inimigo (dano passivo por pressão psicológica).
+* **🐦 Hate no Twitter:** Carta híbrida que causa dano direto e aplica debuffs.
+* **😏 Dar um Migué:** A estratégia defensiva essencial para ganhar fôlego.
+* **💥 Lapada Seca:** Ataque de alto impacto que consome uma quantidade generosa de sono.
 
 ---
 
-## 🏗️ Por baixo do capô (Arquitetura)
+## ✨ Interface e Experiência (Desafio Extra)
 
-O projeto utiliza o padrão **Observer** para gerenciar os efeitos de status:
-
-* **O Maestro (`GameManager`):** Ele é o nosso *Publisher*. Ele dita o ritmo da "baderna", avisando a todos os interessados quando um turno começa ou termina.
-* **Os Espectadores (`Efeito`):** São os *Subscribers*. Eles ficam de olho no `GameManager`. Quando ouvem "Ei, o turno do Silvio Santos acabou!", o efeito de Ansiedade acorda e causa dano.
-
-![Diagrama UML](images/image.png)
-*(Hierarquia atualizada: Entidade, Carta, Efeitos e a infraestrutura de Assinatura/Notificação)*
+Para deixar a "baderna" visualmente interessante e fácil de entender, implementamos:
+* **Cores ANSI:** Vida em **Azul**, Perrengues em **Vermelho**, Escudo em **Verde** e as sagradas Horas de Sono em **Ciano**.
+* **Ritmo de Jogo:** Pausas estratégicas (`Terminal.pausar`) para que o jogador sinta o peso das ações.
+* **Limpeza de Tela:** O console é limpo entre turnos, evitando aquele "textão" infinito e mantendo o foco no combate atual.
 
 ---
 
-## 🕹️ Guia de Sobrevivência (Jogabilidade)
-
-O combate está mais tático do que nunca. Aqui está como você joga:
+## 🕹️ Guia de Sobrevivência
 
 ### 1. Gestão de Recursos (Horas de Sono)
-Você começa cada turno com **Horas de Sono**. Cada "gambiarra" (carta) que você usa custa um pouco desse recurso precioso. Se gastar tudo, você fica "virado" e não consegue mais agir.
+Você começa cada turno com **Horas de Sono**. Cada carta custa um pouco desse recurso. Se o sono acabar, você fica "virado" e vulnerável.
 
 ### 2. O Ciclo do Baralho
-* **Compra:** Você puxa cartas do seu monte.
-* **Descarte:** Cartas usadas ou que sobraram na mão vão para o lixo no fim do turno.
-* **Reciclagem:** Se o monte de compra acabar, a gente embaralha o lixo e começa de novo. Nada se perde, tudo se transforma em gambiarra.
+Cartas usadas vão para o descarte e são reembaralhadas quando o monte de compra esvazia. É a economia circular da sobrevivência.
 
-### 3. Sistema de Efeitos (A grande novidade!)
-* **☕ Cafeína (Buff):** Se você usar a **Carta Cafeína**, ganha escudo extra no início de cada turno. É o famoso "migué" preventivo.
-* **😰 Ansiedade (Debuff):** Algumas cartas (ou ataques do Boleto) causam Ansiedade. Isso tira vida direto no fim do turno. Cuidado: os acúmulos são perigosos!
-
-### 4. Múltiplos Perrengues
-Diferente da tarefa anterior, agora você pode enfrentar uma **Fatura de Cartão** e um **Boleto Vencido** ao mesmo tempo. Você precisará escolher bem qual alvo atacar primeiro para não ser "contratado pelo Vasco".
+### 3. Sistema de Efeitos (Observer Pattern)
+* **Cafeína:** Converte disposição em escudo no início do turno.
+* **Ansiedade:** O inimigo (ou você) sofre as consequências do estresse no final do turno.
 
 ---
 
-## 🚀 Como colocar a baderna pra rodar?
+## 🚀 Como Rodar (Via Gradle)
 
-1.  **Compilação:**
-    ```bash
-    javac -d bin $(find src -name "*.java")
-    ```
-2.  **Execução:**
-    ```bash
-    java -cp bin App
-    ```
+Esqueça os scripts complexos. Agora basta usar o Wrapper do Gradle:
 
----
-
+**Compilar o projeto:**
+```bash
+./gradlew build
