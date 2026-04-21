@@ -39,7 +39,6 @@ public class Batalha{
             baralho.comprarCartas(3);
 
             while(turno_acontecendo && inimigos_estao_vivos(inimigos)){
-                Terminal.limparTela();
                 System.out.println(Cores.AMARELO + "\n--- SEU TURNO ---" + Cores.RESET);
                 System.out.println(Cores.AZUL + silvio + Cores.RESET);
                 System.out.println(Cores.AZUL + heroi.getNome()+ ": " +  "(" + heroi.getVida() + "/100)" + " (" + heroi.getEscudo() + " de escudo)" + Cores.RESET);
