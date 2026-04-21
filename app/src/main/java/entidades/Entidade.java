@@ -107,4 +107,24 @@ public abstract class Entidade {
     public void setEscudo(int escudo){
         this.escudo = escudo;
     }
+    /**
+     * Remove os efeitos que já expiraram (acúmulos <= 0)
+     */
+    public void limparEfeitos(){
+        this.efeitos.removeIf(e -> e.getAcumulos() <= 0);
+    }
+    /** *
+     * Formata a lista de efeitos ativos para exibição
+     */ 
+    public String listarEfeitos(){
+        if(this.efeitos.isEmpty()){
+            return "";
+        }
+        StringBuilder sb = new StringBuilder("[Efeitos: ");
+        for (Efeito e : this.efeitos){
+            sb.append(e.getString()).append("");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }

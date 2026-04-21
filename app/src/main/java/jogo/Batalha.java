@@ -40,20 +40,23 @@ public class Batalha{
 
             while(turno_acontecendo && inimigos_estao_vivos(inimigos)){
                 System.out.println(Cores.AMARELO + "\n--- SEU TURNO ---" + Cores.RESET);
+                
+                heroi.limparEfeitos();
                 System.out.println(Cores.AZUL + silvio + Cores.RESET);
-                System.out.println(Cores.AZUL + heroi.getNome()+ ": " +  "(" + heroi.getVida() + "/100)" + " (" + heroi.getEscudo() + " de escudo)" + Cores.RESET);
+                System.out.println(Cores.AZUL + heroi.getNome()+ ": " +  "(" + heroi.getVida() + "/100)" + " (" + heroi.getEscudo() + " de escudo)" + heroi.listarEfeitos() + Cores.RESET);
                 System.out.println(Cores.CIANO + "Horas de Sono disponíveis: " + heroi.getHorasdeSono() + "/12" + Cores.RESET);
                 System.out.println(Cores.VERMELHO + "\nPerrengues à vista:" + Cores.RESET);
                 
                 for(int i = 0; i < inimigos.size(); i++){
                     Inimigo in = inimigos.get(i);
                     if(in.estaVivo()){
+                        in.listarEfeitos();
                         if(in.getNome().equals("Fatura de Cartão")){
                             System.out.println(Cores.VERMELHO + cartao + Cores.RESET);
                         } else if(in.getNome().equals("Boleto Vencido")){
                             System.out.println(Cores.VERMELHO + boleto + Cores.RESET);
                         }
-                        System.out.println(Cores.VERMELHO + (i+1) + " - " + in.getNome() + " (" + in.getVida() + " pontos de vida)" + Cores.RESET);
+                        System.out.println(Cores.VERMELHO + (i+1) + " - " + in.getNome() + " (" + in.getVida() + " pontos de vida)" + in.listarEfeitos() + Cores.RESET);
                     }
                 }
 
