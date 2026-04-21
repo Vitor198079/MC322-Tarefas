@@ -164,4 +164,8 @@ public class Batalha{
         }
         return cont;
     }
+    public void setHeroi(Heroi heroi){
+        this.heroi= heroi;
+        this.gerenciador = new GameManager(heroi, this.inimigos);
+    }
 }
