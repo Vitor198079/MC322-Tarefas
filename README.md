@@ -8,7 +8,7 @@ Este projeto foi desenvolvido como parte das avaliações da disciplina **MC322 
 
 O jogo é um *roguelike deckbuilder* inspirado em **Slay the Spire**, focado em aplicar conceitos de Engenharia de Software, como persistência de dados, testes automatizados e design partterns (Observer). Nele, o jogador controla Silvio Santos utilizando um baralho de "gambiarras" para derrotar inimigos cotidianos (boletos e faturas) em batalhas por turnos.
 
-##1. Estrutura do Projeto
+## 1. Estrutura do Projeto
 O projeto adota a estrutura padrão do **Gradle** para Java, com separação clara de responsabilidades:
 
 ```text
@@ -32,7 +32,7 @@ O projeto adota a estrutura padrão do **Gradle** para Java, com separação cla
 ├─ build.gradle                  # Configurações de dependências (Gson, JaCoCo, JUnit)
 └─ README.md
 ```
-##2. Como Executar o Jogo
+## 2. Como Executar o Jogo
 Na raiz do repositório, utilize o wrapper do Gradle para compilar e executar o projeto:
 ```bash
 ./gradlew clean build
@@ -40,7 +40,7 @@ Na raiz do repositório, utilize o wrapper do Gradle para compilar e executar o 
 ```
 *Nota: O Gradle fará o download e resolverá automaticamente a biblioteca Gson necessária para a persistência*
 
-##3. Testes Automatizados e Cobertura
+## 3. Testes Automatizados e Cobertura
 O projeto possui testes unitários para garantir os requisitos de qualidade do software. Para gerar os testes e gerar o relatório de cobertura (JaCoCo):
 ```bash
 ./gradlew test
@@ -48,19 +48,19 @@ O projeto possui testes unitários para garantir os requisitos de qualidade do s
 ```
 O relatório HTML está disponível em: *build/reports/jacoco/test/html/index.html*.
 
-##4. Mecânicas e Funcionalidades
+## 4. Mecânicas e Funcionalidades
 - **Navegação(Árvore):** Avance por nós como Guarujá, Acre e Taubaté. A posição e os caminhos disponíveis são gerenciados dinamicamente.
 - **Combate e Turnos:** Gerencia 12 Horas de Sono (energia) por turno para jogar as cartas de ataque, defesa ou efeitos.
 - **Persistência de Estado (JSON):** Salve o progresso a qualquer momento ("0 - Salvar e Sair"). Os dados (vida, mapa, carta na mão) são gravados em *save.json* e recarregados automaticamente na próxima sessão.
 
-##5. Tecnologias Utilizadas
+## 5. Tecnologias Utilizadas
 * Linguagem: Java
 * Ferramente de Build: Gradle
 * Testes: JUnit 5
 * Cobertura de Código: JaCoCo
 * Persistência: Google Gson
 
-##6. Autoria
+## 6. Autoria
 Projeto desenvolvido por:
 * **Guilherme Arthur Arruda de Figueiredo, RA 174618**
 * **Vitor Ribeiro Lima, RA 198079**
