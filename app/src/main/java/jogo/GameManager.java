@@ -1,3 +1,8 @@
+package jogo;
+import padroes.Publisher;
+import padroes.Subscriber;
+import entidades.Heroi;
+import entidades.Inimigo;
 import java.util.ArrayList;
 
 /**
@@ -48,8 +53,8 @@ public class GameManager implements Publisher {
     public void IniciarTurno(){
         System.out.println("\n================================");
         System.out.println("=== INíCIO DO TURNO DE " + heroi.getNome().toUpperCase() + " ===");
-        notificar("INICIO_BADERNA_" + heroi.getNome());
         heroi.IniciarTurno();
+        notificar("INICIO_BADERNA_" + heroi.getNome());
     }
 
     /**
@@ -66,7 +71,6 @@ public class GameManager implements Publisher {
      */
     public void turno_inimigos(){
         System.out.println("\n================================");
-        System.out.println("=== TURNO DOS PERRENGUES ===");
 
         for(Inimigo inimigo : inimigos){
             if(inimigo.estaVivo()){

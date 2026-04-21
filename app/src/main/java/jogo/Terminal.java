@@ -1,3 +1,4 @@
+package jogo;
 /**
  * Utilitário para manipulação da interface de linha de comando.
  * Contém métodos para controle de fluxo visual e limpeza do console.

@@ -1,5 +1,10 @@
-import java.util.Scanner;
+import entidades.*;
+import cartas.*;
+import jogo.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
 
 /**
  * Classe principal responsável por executar o jogo e controlar o fluxo geral
@@ -13,162 +18,170 @@ public class App{
      */
     public static void main(String[] args){
         Scanner teclado = new Scanner(System.in);
-        
-        Heroi Silvio_Santos = new Heroi("Silvio Santos", 100, 12);
-        
-        ArrayList<Inimigo> Inimigos = new ArrayList<>();
-        Inimigos.add(new Boleto("Fatura de Cartão", 80, 35));
-        Inimigos.add(new Boleto("Boleto Vencido", 100, 20));
-
-        GameManager gerenciador = new GameManager(Silvio_Santos, Inimigos);
-        
+        GerenciadorJogo gj = new GerenciadorJogo();
+        EstadoJogo save = gj.carregar();
+        Heroi Silvio_Santos;
         Baralho baralho = new Baralho();
-
+        NoMapa inicio;
+        NoMapa atual;
         String silvio = Arte.imprimir("src/main/resources/terminal_artstle/Silvio.txt");
         String boleto = Arte.imprimir("src/main/resources/terminal_artstle/Boleto.txt");
         String cartao = Arte.imprimir("src/main/resources/terminal_artstle/Cartao.txt");
 
-        System.out.println(Cores.AMARELO + "===QUE COMECE A BADERNA!===" + Cores.RESET);
-        Terminal.pausar(2000);
+        
+        ArrayList<Inimigo> Inimigos = new ArrayList<>();
+        Inimigos.add(new Boleto("Fatura de Cartão", 80, 35));
+        Inimigos.add(new Boleto("Boleto Vencido", 100, 20));
+        
 
-        while(Silvio_Santos.estaVivo() && Inimigos_estao_vivos(Inimigos)){
-            gerenciador.IniciarTurno();
-            boolean turno_acontecendo = true;
-            baralho.comprarCartas(3);
+        ArrayList<Inimigo> inimigosno1 = new ArrayList<>();
+        inimigosno1.add(new Boleto("Boleto Vencido (Nível 1)", 50, 15));
+        Batalha batalha1 = new Batalha(null, inimigosno1, baralho, silvio, cartao, boleto);
+        inicio = new NoMapa("Guarujá", batalha1);
 
-            while(turno_acontecendo && Inimigos_estao_vivos(Inimigos)){
-                Terminal.limparTela();
-                System.out.println(Cores.AMARELO + "\n--- SEU TURNO ---" + Cores.RESET);
-                System.out.println(Cores.AZUL + silvio + Cores.RESET);
-                System.out.println(Cores.AZUL + Silvio_Santos.getNome()+ ": " +  "(" + Silvio_Santos.getVida() + "/100)" + " (" + Silvio_Santos.getEscudo() + " de escudo)" + Cores.RESET);
-                System.out.println(Cores.CIANO + "Horas de Sono disponíveis: " + Silvio_Santos.getHorasdeSono() + "/12" + Cores.RESET);
-                System.out.println(Cores.VERMELHO + "\nPerrengues à vista:" + Cores.RESET);
-                
-                for(int i = 0; i < Inimigos.size(); i++){
-                    Inimigo in = Inimigos.get(i);
-                    if(in.estaVivo()){
-                        if(in.getNome().equals("Fatura de Cartão")){
-                            System.out.println(Cores.VERMELHO + cartao + Cores.RESET);
-                        } else if(in.getNome().equals("Boleto Vencido")){
-                            System.out.println(Cores.VERMELHO + boleto + Cores.RESET);
-                        }
-                        System.out.println(Cores.VERMELHO + (i+1) + " - " + in.getNome() + " (" + in.getVida() + " pontos de vida)" + Cores.RESET);
-                    }
-                }
+        ArrayList<Inimigo> inimigosno2 = new ArrayList<>();
+        inimigosno2.add(new Boleto("Fatura de Cartão (Nível 1)", 80, 25));
+        Batalha batalha2 = new Batalha(null, inimigosno2, baralho, silvio, cartao, boleto);
+        NoMapa Acre = new NoMapa("Vila dos Dinossauros - Acre", batalha2);
 
-                System.out.println("\nEscolha sua gambiarra:");
-                int escolha = 1;
-                for (Carta c : baralho.getMao()){
-                    System.out.println(escolha + " - Usar [" + c.getNome() + "] (Custa " + c.getCusto() + " horas de sono | " + c.getDescricao() + ")");
-                    escolha++;
-                }
-                int escolha_encerrar = escolha;
-                System.out.println(escolha_encerrar + " - Encerrar turno (Dormir)");
-                System.out.print(">>> ");
-                
-                int input = teclado.nextInt();
-                System.out.println("-------------------------------");
-                
-                if (input >= 1 && input < escolha_encerrar) {
-                    Carta cartaEscolhida = baralho.getMao().get(input - 1);
-                    Inimigo alvo = null;
-                    
-                    boolean ehCartaDeDefesa = (cartaEscolhida instanceof CartaEscudo) || (cartaEscolhida instanceof CartaCafeina);
-                    
-                    if (!ehCartaDeDefesa) {
-                        if(contaInimigos(Inimigos) > 1){
-                            System.out.println("\nQuem você vai alvejar?");
-                            for(int i = 0; i < Inimigos.size(); i++){
-                                if(Inimigos.get(i).estaVivo()){
-                                    System.out.println((i+1) + " - " + Inimigos.get(i).getNome());
-                                }
-                            }
-                            System.out.print(">>> ");
-                            int alvoId = teclado.nextInt() - 1;
-                            if(alvoId >= 0 && alvoId < Inimigos.size() && Inimigos.get(alvoId).estaVivo()){
-                                alvo = Inimigos.get(alvoId);
-                            } else {
-                                System.out.println("Alvo inválido!");
-                                Terminal.pausar(1500);
-                            }
-                        } else {
-                            for(Inimigo in : Inimigos){
-                                if(in.estaVivo()){
-                                    alvo = in;
-                                    break;
-                                }
-                            }
-                        }
-                    } else {
-                        for(Inimigo in : Inimigos){
-                            if(in.estaVivo()){
-                                alvo = in;
-                                break;
-                            }
-                        }
-                    }
-                    
-                    if(alvo != null){
-                        cartaEscolhida.usar(Silvio_Santos, alvo, gerenciador);
-                        baralho.cartaUsadaParaDescarte(input - 1);
-                        Terminal.pausar(2500);
-                    }
-                    
-                } else if(input == escolha_encerrar) {
-                    turno_acontecendo = false;
-                }else{
-                    System.out.println("Opção inválida!");
-                    Terminal.pausar(1500);
-                }
-                
-                if(baralho.maoEstaVazia() && turno_acontecendo){
-                    System.out.println("Ficou sem gambiarras! Fim do turno");
-                    Terminal.pausar(2000);
-                    turno_acontecendo = false;
-                }
-            }
+        ArrayList<Inimigo> inimigosno3 = new ArrayList<>();
+        inimigosno3.add(new Boleto("Boleto Vencido(Nível 3)", 80, 20));
+        inimigosno3.add(new Boleto("Fatura de Cartão (Nível 2)", 100, 30));
+        Batalha batalha3 = new Batalha(null, inimigosno3, baralho, silvio, cartao, boleto);
+        NoMapa Taubate = new NoMapa("Taubaté - SP", batalha3);
+
+        inicio.adiciona_caminho(Acre);
+        inicio.adiciona_caminho(Taubate);
+        atual = inicio;
+        if (save != null) {
+            System.out.println(Cores.VERDE + "Carregando baderna anterior de " + save.localAtual + "..." + Cores.RESET);
+            Silvio_Santos = new Heroi("Silvio Santos", save.vida, save.horasDeSono);
             
-        baralho.descartarMaoRestante();
-        gerenciador.finalizarTurno();
-
-        if(Inimigos_estao_vivos(Inimigos)){
-            System.out.println(Cores.VERMELHO + "\n--- TURNO DOS PERRENGUES ---" + Cores.RESET);
-            gerenciador.turno_inimigos();
-            Terminal.pausar(3500);
+            atual = buscarNoPeloNome(save.localAtual, inicio);
+            
+            if (atual == null) {
+                System.out.println("Local salvo não encontrado. Reiniciando do Guarujá.");
+                atual = inicio;
+            }
+        } else {
+            Silvio_Santos = new Heroi("Silvio Santos", 100, 12);
+            atual = inicio;
         }
-    }
-    System.out.println(Cores.AMARELO + "\n=== FIM DA BADERNA ===" + Cores.RESET);
-    if(Silvio_Santos.estaVivo()){
-        System.out.println(Cores.VERDE + "VITÓRIA! Você venceu o sistema e não vai pro Vasco da Gama!" + Cores.RESET);
-    }else{
-        System.out.println(Cores.VERMELHO + "DERROTA! O perrengue te derrotou, espere pela contratação do Vasco." + Cores.RESET);
-    }
+        atualizarHeroiNasBatalhas(inicio, Silvio_Santos);
+        boolean jogo = true;
+        while(jogo && atual != null){
+            Terminal.limparTela();
+            System.out.println(Cores.CIANO + ">>> VOCÊ CHEGOU EM: " + atual.getlocal() + " <<<" + Cores.RESET);
+            Terminal.pausar(1500);
 
-        teclado.close(); 
-    }
-    
-    /**
-     * Verifica se ainda há inimigos vivos.
-     */
-    private static boolean Inimigos_estao_vivos(ArrayList<Inimigo> inimigos){
-        for(Inimigo in : inimigos){
-            if(in.estaVivo()){
-                return true;
+            boolean sobreviveu = atual.getBatalha().executar();
+
+            if (!sobreviveu) {
+                System.out.println(Cores.VERMELHO + "\nDERROTA! O sistema te venceu. Espere pela contratação do Vasco." + Cores.RESET);
+                jogo = false;
+            } else {
+                System.out.println(Cores.VERDE + "\nVITÓRIA!" + Cores.RESET);
+                Terminal.pausar(2000);
+
+                
+                Silvio_Santos.setHorasdeSono(12);
+
+                if (atual.ehfimdomapa()) {
+                    System.out.println(Cores.AMARELO + "\nPARABÉNS! VOCÊ SOBREVIVEU AO MAPA E VENCEU A BADERNA" + Cores.RESET);
+                    jogo = false;
+                } else {
+                    System.out.println("\nEscolha sua traquinagem");
+                    System.out.println("0 - Salvar e sair");
+                    ArrayList<NoMapa> opcoes = atual.getCaminhos();
+                    
+                    for (int i = 0; i < opcoes.size(); i++) {
+                        System.out.println((i + 1) + " - Ir para " + opcoes.get(i).getlocal());
+                    }
+                    System.out.print(">>> ");
+                    
+                    int escolha = teclado.nextInt();
+                    if(escolha == 0){
+                        ArrayList<String> nomesCartas = new ArrayList<>();
+                        for(Carta c : baralho.getMao()){
+                            nomesCartas.add(c.getNome());
+                        }
+                    
+                        // Cria o objeto e salva
+                        EstadoJogo estado = new EstadoJogo(
+                            Silvio_Santos.getVida(), 
+                            Silvio_Santos.getHorasdeSono(), 
+                            atual.getlocal(), 
+                            nomesCartas
+                        );
+                        gj.salvar(estado);
+                    
+                        System.out.println("Progresso guardado. Até a próxima baderna!");
+                        jogo = false;
+                    }
+                    else if (escolha >= 1 && escolha <= opcoes.size()) {
+                        atual = opcoes.get(escolha - 1);
+                    } else {
+                        System.out.println("Você se perdeu... E acabou indo para a opção 1 por acidente.");
+                        atual = opcoes.get(0);
+                        Terminal.pausar(2000);
+                    }
+                }
             }
         }
-        return false;
+
+        teclado.close();
     }
-    
-    /**
-     * Conta quantos inimigos ainda estão vivos.
+/**
+     * Método auxiliar para buscar um nó no mapa pelo nome (Busca em Largura).
      */
-    private static int contaInimigos(ArrayList<Inimigo> inimigos){
-        int cont = 0;
-        for(Inimigo in : inimigos){
-            if(in.estaVivo()){
-                cont++;
+    private static NoMapa buscarNoPeloNome(String nome, NoMapa raiz) {
+        if (raiz == null) return null;
+        
+        Queue<NoMapa> fila = new LinkedList<>();
+        ArrayList<NoMapa> visitados = new ArrayList<>();
+        
+        fila.add(raiz);
+        while (!fila.isEmpty()) {
+            NoMapa atual = fila.poll();
+            if (atual.getlocal().equals(nome)) return atual;
+            
+            visitados.add(atual);
+            for (NoMapa filho : atual.getCaminhos()) {
+                if (!visitados.contains(filho)) {
+                    fila.add(filho);
+                }
             }
         }
-        return cont;
+        return null;
+    }
+
+    /**
+     * Garante que todas as batalhas usem a instância correta do herói (carregada ou nova).
+     */
+/**
+ * Percorre todo o mapa e garante que cada objeto Batalha conheça o herói atual.
+ */
+    private static void atualizarHeroiNasBatalhas(NoMapa raiz, Heroi heroi) {
+        if (raiz == null) return;
+
+        Queue<NoMapa> fila = new LinkedList<>();
+        ArrayList<NoMapa> visitados = new ArrayList<>();
+
+        fila.add(raiz);
+        while (!fila.isEmpty()) {
+            NoMapa atual = fila.poll();
+            
+            // Atualiza o herói na batalha deste nó específico
+            if (atual.getBatalha() != null) {
+                atual.getBatalha().setHeroi(heroi);
+            }
+
+            visitados.add(atual);
+            for (NoMapa proximo : atual.getCaminhos()) {
+                if (!visitados.contains(proximo)) {
+                    fila.add(proximo);
+                }
+            }
+        }
     }
 }

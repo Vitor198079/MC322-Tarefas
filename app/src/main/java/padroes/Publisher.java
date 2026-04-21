@@ -1,3 +1,4 @@
+package padroes;
 /**
  * Interface que define o papel de um publicador no padrão Observer.
  * Responsável por gerenciar assinantes e distribuir notificações de eventos.

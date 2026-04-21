@@ -1,3 +1,6 @@
+package efeitos;
+import entidades.Entidade;
+import padroes.Subscriber;
 /**
  * Classe abstrata que representa modificadores de status (buffs ou debuffs).
  * Implementa o padrão Subscriber para reagir a eventos globais do jogo.

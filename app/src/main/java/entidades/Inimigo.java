@@ -1,3 +1,7 @@
+package entidades;
+import padroes.Publisher;
+import efeitos.Efeito;
+import efeitos.Ansiedade;
 /**
  * Classe base abstrata para os oponentes (perrengues) do jogo.
  * Define a estrutura para ataques e anúncios de intenção hostil.

@@ -1,3 +1,7 @@
+package entidades;
+import padroes.Publisher;
+import efeitos.Efeito;
+import efeitos.Ansiedade;
 /**
  * Representa o protagonista controlado pelo jogador.
  * Gerencia o recurso principal do jogo: as horas de sono, que limitam as ações por turno.
@@ -21,6 +25,9 @@ public class Heroi extends Entidade {
     public int getHorasdeSono(){
         return this.horas_de_sono;
     }
+    public void setHorasdeSono(int horas){
+        this.horas_de_sono = horas;
+    }
 
     /**
      * Deduz o custo de uma ação do total de descanso disponível.
@@ -37,11 +44,7 @@ public class Heroi extends Entidade {
      */
     public void IniciarTurno(){
         this.horas_de_sono = this.max_horas_de_sono;
-        if(this.getEscudo() > 0){
             this.setEscudo(0);
-            System.out.println("Um novo turno começou! Seu migué anterior acabou e você está sem escudo!");
-        }else{
             System.out.println("Um novo turno começou! Suas horas de sono foram restauradas.");
-        }
     }
 }

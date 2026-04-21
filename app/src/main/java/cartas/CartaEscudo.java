@@ -1,3 +1,9 @@
+package cartas;
+import entidades.Heroi;
+import entidades.Inimigo;
+import padroes.Publisher;
+import efeitos.Ansiedade;
+import efeitos.Cafeina;
 /**
  * Representa a famosa técnica brasileira de "dar um migué" para se proteger.
  * Concede escudo imediato para absorver danos futuros.

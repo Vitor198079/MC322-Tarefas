@@ -1,3 +1,9 @@
+package cartas;
+import entidades.Heroi;
+import entidades.Inimigo;
+import padroes.Publisher;
+import efeitos.Ansiedade;
+import efeitos.Cafeina;
 /**
  * Representa a ação de consumir café para ganhar proteção extra.
  * O café gera acúmulos que se transformam em escudo nos turnos seguintes.
