@@ -1,3 +1,9 @@
+package cartas;
+import entidades.Heroi;
+import entidades.Inimigo;
+import padroes.Publisher;
+import efeitos.Ansiedade;
+import efeitos.Cafeina;
 /**
  * Implementa uma carta que aplica o efeito negativo de Ansiedade ao inimigo.
  * Representa o uso de pressão psicológica ou gatilhos mentais contra os oponentes.

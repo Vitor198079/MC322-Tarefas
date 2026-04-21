@@ -1,3 +1,7 @@
+package entidades;
+import padroes.Publisher;
+import efeitos.Efeito;
+import efeitos.Ansiedade;
 /**
  * Representa o protagonista controlado pelo jogador.
  * Gerencia o recurso principal do jogo: as horas de sono, que limitam as ações por turno.

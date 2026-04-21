@@ -1,3 +1,8 @@
+package jogo;
+import padroes.Publisher;
+import padroes.Subscriber;
+import entidades.Heroi;
+import entidades.Inimigo;
 import java.util.ArrayList;
 
 /**

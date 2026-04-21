@@ -1,3 +1,4 @@
+package jogo;
 /**
  * Utilitário para formatação de texto no terminal via códigos ANSI.
  * Define cores específicas para facilitar a leitura dos recursos e status do jogo.

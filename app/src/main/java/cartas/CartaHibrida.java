@@ -1,3 +1,9 @@
+package cartas;
+import entidades.Heroi;
+import entidades.Inimigo;
+import padroes.Publisher;
+import efeitos.Ansiedade;
+import efeitos.Cafeina;
 /**
  * Uma carta versátil que combina agressividade direta com pressão psicológica.
  * Causa dano imediato e ainda deixa o inimigo com o status de ansiedade.

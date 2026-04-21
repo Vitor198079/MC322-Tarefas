@@ -1,3 +1,5 @@
+package efeitos;
+import entidades.Entidade;
 /**
  * Implementa o efeito de Cafeína, que converte o estado de alerta em defesa.
  * No início do turno da entidade, os acúmulos de café são transformados 

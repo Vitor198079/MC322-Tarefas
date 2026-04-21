@@ -1,3 +1,10 @@
+package cartas;
+import entidades.Heroi;
+import entidades.Inimigo;
+import padroes.Publisher;
+import efeitos.Ansiedade;
+import efeitos.Cafeina;
+
 /**
  * Classe abstrata que define a estrutura base de uma carta no jogo.
  * Representa uma ação que o jogador pode realizar, consumindo horas de sono como recurso.

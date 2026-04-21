@@ -1,3 +1,5 @@
+package efeitos;
+import entidades.Entidade;
 /**
  * Efeito "Ansiedade" que causa dano direto ao dono ao final de certos eventos,
  * reduzindo seus acúmulos a cada ativação.

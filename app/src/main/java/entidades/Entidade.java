@@ -1,4 +1,8 @@
+package entidades;
 import java.util.ArrayList;
+import padroes.Publisher;
+import efeitos.Efeito;
+import efeitos.Ansiedade;
 
 /**
  * Representa qualquer ser vivo ou "entidade" no campo de batalha.

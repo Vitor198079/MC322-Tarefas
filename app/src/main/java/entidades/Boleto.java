@@ -1,4 +1,9 @@
+package entidades;
 import java.util.Random;
+import padroes.Publisher;
+import efeitos.Efeito;
+import efeitos.Ansiedade;
+
 
 /**
  * Representa um inimigo do tipo Boleto, que pode causar dano direto

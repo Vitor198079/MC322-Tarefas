@@ -1,3 +1,4 @@
+package padroes;
 /**
  * Interface que define o papel de um assinante no padrão Observer.
  * Permite que objetos reajam passivamente a mudanças globais no estado do jogo.

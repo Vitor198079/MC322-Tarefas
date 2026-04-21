@@ -1,3 +1,9 @@
+package cartas;
+import entidades.Heroi;
+import entidades.Inimigo;
+import padroes.Publisher;
+import efeitos.Ansiedade;
+import efeitos.Cafeina;
 /**
  * Carta focada em causar dano direto aos "perrengues" do cotidiano.
  * Representa o esforço físico ou mental convertido em ataque.
