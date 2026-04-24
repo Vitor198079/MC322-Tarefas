@@ -11,7 +11,7 @@ import jogo.Terminal;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Batalha{
+public class Batalha extends Evento{
     private Heroi heroi;
     private ArrayList<Inimigo> inimigos;
     private GameManager gerenciador;
@@ -21,7 +21,8 @@ public class Batalha{
     private String boleto;
 
 
-    public Batalha(Heroi heroi, ArrayList<Inimigo> inimigos, Baralho baralho, String silvio, String cartao, String boleto){
+    public Batalha(String evento, Heroi heroi, ArrayList<Inimigo> inimigos, Baralho baralho, String silvio, String cartao, String boleto){
+        super(evento);
         this.heroi = heroi;
         this.inimigos = inimigos;
         this.gerenciador = new GameManager(heroi, inimigos);
@@ -30,7 +31,8 @@ public class Batalha{
         this.cartao = cartao;
         this.boleto = boleto;
     }
-    public boolean executar(){
+    public boolean iniciar(Heroi heroi){
+        this.setHeroi(heroi);
         Scanner teclado = new Scanner(System.in);
 
         while(heroi.estaVivo() && inimigos_estao_vivos(inimigos)){
@@ -140,6 +142,13 @@ public class Batalha{
             gerenciador.turno_inimigos();
             Terminal.pausar(3500);
         }
+    }
+    if(heroi.estaVivo()){
+        System.out.println(Cores.VERDE + "\n--- TROCO DE PÃO DA BATALHA ---" + Cores.RESET);
+        System.out.println("Você venceu os perrengues! O sistema gerou 3 novas gambiarras e moedas de ouro.");
+        int ouroGanho = 20 + new Random().nextInt(30);
+        heroi.adicionarOuro(ouroGanho);
+        ArrayList<Carta> recompensas = baralho.gerarReco
     }
     return heroi.estaVivo();
     }

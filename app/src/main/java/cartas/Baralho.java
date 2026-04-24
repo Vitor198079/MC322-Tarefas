@@ -120,4 +120,11 @@ public class Baralho {
     public boolean maoEstaVazia() {
         return mao.isEmpty();
     }
+    /**
+     * Gera uma lista de cartas aleatórias 
+     */
+    public ArrayList<Carta> gerarRecompensasAleatorias(int quantidade){
+        ArrayList<Carta> opcoes = new ArrayList<>();
+
+    }
 }

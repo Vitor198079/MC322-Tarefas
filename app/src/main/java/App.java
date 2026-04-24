@@ -56,6 +56,7 @@ public class App{
         if (save != null) {
             System.out.println(Cores.VERDE + "Carregando baderna anterior de " + save.localAtual + "..." + Cores.RESET);
             Silvio_Santos = new Heroi("Silvio Santos", save.vida, save.horasDeSono);
+            Silvio_Santos.setOuro(save.ouro);
             
             atual = buscarNoPeloNome(save.localAtual, inicio);
             
@@ -110,6 +111,7 @@ public class App{
                         EstadoJogo estado = new EstadoJogo(
                             Silvio_Santos.getVida(), 
                             Silvio_Santos.getHorasdeSono(), 
+                            Silvio_Santos.getOuro(),
                             atual.getlocal(), 
                             nomesCartas
                         );
