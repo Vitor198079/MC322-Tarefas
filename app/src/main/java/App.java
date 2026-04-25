@@ -50,8 +50,11 @@ public class App{
         Batalha batalha3 = new Batalha(null, inimigosno3, baralho, silvio, cartao, boleto);
         NoMapa Taubate = new NoMapa("Taubaté - SP", batalha3);
 
-        inicio.adiciona_caminho(Acre);
-        inicio.adiciona_caminho(Taubate);
+        Escolha evento = new Escolha("Perigo, do Todo Mundo Odeia o Chris", "No meio do caminho, um sujeito negro de óculos escuros que usava crocs te aborda.\n" + "'Aí, chefe! Tenho uns esquemas bons aqui pra curar esse seu cansaço. Vai encarar?'");
+        NoMapa vinte_cinco_marco = new NoMapa("25 de Março", evento);
+        inicio.adiciona_caminho(vinte_cinco_marco)
+        vinte_cinco_marco.adiciona_caminho(Acre);
+        vinte_cinco_marco.adiciona_caminho(Taubate);
         atual = inicio;
         if (save != null) {
             System.out.println(Cores.VERDE + "Carregando baderna anterior de " + save.localAtual + "..." + Cores.RESET);
