@@ -68,14 +68,13 @@ public class App{
             Silvio_Santos = new Heroi("Silvio Santos", 100, 12);
             atual = inicio;
         }
-        atualizarHeroiNasBatalhas(inicio, Silvio_Santos);
         boolean jogo = true;
         while(jogo && atual != null){
             Terminal.limparTela();
             System.out.println(Cores.CIANO + ">>> VOCÊ CHEGOU EM: " + atual.getlocal() + " <<<" + Cores.RESET);
             Terminal.pausar(1500);
 
-            boolean sobreviveu = atual.getBatalha().executar();
+            boolean sobreviveu = atual.getEvento().iniciar(Silvio_Santos);
 
             if (!sobreviveu) {
                 System.out.println(Cores.VERMELHO + "\nDERROTA! O sistema te venceu. Espere pela contratação do Vasco." + Cores.RESET);
@@ -155,35 +154,5 @@ public class App{
             }
         }
         return null;
-    }
-
-    /**
-     * Garante que todas as batalhas usem a instância correta do herói (carregada ou nova).
-     */
-/**
- * Percorre todo o mapa e garante que cada objeto Batalha conheça o herói atual.
- */
-    private static void atualizarHeroiNasBatalhas(NoMapa raiz, Heroi heroi) {
-        if (raiz == null) return;
-
-        Queue<NoMapa> fila = new LinkedList<>();
-        ArrayList<NoMapa> visitados = new ArrayList<>();
-
-        fila.add(raiz);
-        while (!fila.isEmpty()) {
-            NoMapa atual = fila.poll();
-            
-            // Atualiza o herói na batalha deste nó específico
-            if (atual.getBatalha() != null) {
-                atual.getBatalha().setHeroi(heroi);
-            }
-
-            visitados.add(atual);
-            for (NoMapa proximo : atual.getCaminhos()) {
-                if (!visitados.contains(proximo)) {
-                    fila.add(proximo);
-                }
-            }
-        }
     }
 }

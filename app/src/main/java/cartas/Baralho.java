@@ -127,4 +127,10 @@ public class Baralho {
         ArrayList<Carta> opcoes = new ArrayList<>();
 
     }
+    /**
+     * Adiciona uma carta permanentemente à lista de compras do jogador
+     */
+    public void adicionaCarta(Carta nova){
+        this.compra.add(nova);
+    }
 }

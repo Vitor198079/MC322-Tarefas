@@ -148,7 +148,21 @@ public class Batalha extends Evento{
         System.out.println("Você venceu os perrengues! O sistema gerou 3 novas gambiarras e moedas de ouro.");
         int ouroGanho = 20 + new Random().nextInt(30);
         heroi.adicionarOuro(ouroGanho);
-        ArrayList<Carta> recompensas = baralho.gerarReco
+        ArrayList<Carta> recompensas = baralho.gerarRecompensasAleatorias(3);
+        System.out.println("Escolha uma carta para adicionar ao seu baralho permanentemente:");
+        for(int i = 0; i < recompensas.size(); i++){
+            System.out.println((i+1) + " - [" + recompensas.get(i).getNome() + "] " + recompensas.get(i).getDescricao);
+
+        }
+        System.out.println("4 - Pular seu troco de pão (Não pegue nada)");
+        System.out.println(">>> ");
+        int escolha = teclado.nexInt();
+        if(escolha >= 1 && escolha <= 3){
+            Carta adquirida = recompensas.get(escolha -1);
+            Baralho.adicionaCarta(adquirida);
+            System.out.println("Carta [" + adquirida.getNome() + "] adicionada ao baralho!");
+            Terminal.pausar(2000);
+        }
     }
     return heroi.estaVivo();
     }

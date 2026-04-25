@@ -5,7 +5,7 @@ import java.util.ArrayList;
  */
 public class NoMapa {
     private String local;
-    private Batalha batalha;
+    private Evento evento;
     private ArrayList<NoMapa> caminhos;
 
     public NoMapa(String local, Batalha batalha){
@@ -22,8 +22,8 @@ public class NoMapa {
     public String getlocal(){
         return this.local;
     }
-    public Batalha getBatalha(){
-        return this.batalha;
+    public Batalha getEvento(){
+        return this.evento;
     }
     public boolean ehfimdomapa(){
         return this.caminhos.isEmpty();
