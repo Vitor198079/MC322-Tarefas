@@ -52,6 +52,11 @@ O relatório HTML está disponível em: *build/reports/jacoco/test/html/index.ht
 - **Navegação(Árvore):** Avance por nós como Guarujá, Acre e Taubaté. A posição e os caminhos disponíveis são gerenciados dinamicamente.
 - **Combate e Turnos:** Gerencia 12 Horas de Sono (energia) por turno para jogar as cartas de ataque, defesa ou efeitos.
 - **Persistência de Estado (JSON):** Salve o progresso a qualquer momento ("0 - Salvar e Sair"). Os dados (vida, mapa, carta na mão) são gravados em *save.json* e recarregados automaticamente na próxima sessão.
+- **Sistema de Loja de Itens(Baú do Silvio)**
+ * Descrição: Permite ao jogador gastar o ouro acumulado em batalhas para recuperar vida ou refinar o baralho removendo cartas indesejadas.
+ * Padrão de Design: Strategy Pattern.
+ * Fonte: refactoring.guru/design-patterns/strategy.
+    - Justificativa: O padrão permite que a Loja seja extensível. Novos itens (estratégias) podem ser criados sem alterar o código principal da classe **Loja**.
 
 ## 5. Tecnologias Utilizadas
 * Linguagem: Java
