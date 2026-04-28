@@ -20,7 +20,7 @@ public class Terminal {
      * Limpa o console utilizando códigos ANSI para manter a interface organizada.
      */
     public static void limparTela(){
-        System.out.print("\u001B[H\u001B[2J");
+        System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 }

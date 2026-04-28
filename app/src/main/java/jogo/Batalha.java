@@ -48,6 +48,7 @@ public class Batalha extends Evento{
                 System.out.println(Cores.AZUL + silvio + Cores.RESET);
                 System.out.println(Cores.AZUL + heroi.getNome()+ ": " +  "(" + heroi.getVida() + "/100)" + " (" + heroi.getEscudo() + " de escudo)" + heroi.listarEfeitos() + Cores.RESET);
                 System.out.println(Cores.CIANO + "Horas de Sono disponíveis: " + heroi.getHorasdeSono() + "/12" + Cores.RESET);
+                System.out.println(Cores.VERDE + "Moedas de Ouro: " + heroi.getOuro() + Cores.RESET);
                 System.out.println(Cores.VERMELHO + "\nPerrengues à vista:" + Cores.RESET);
                 
                 for(int i = 0; i < inimigos.size(); i++){

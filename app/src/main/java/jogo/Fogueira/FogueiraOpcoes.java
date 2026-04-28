@@ -2,6 +2,7 @@ package jogo;
 import entidades.*;
 import cartas.*;
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class FogueiraOpcoes extends Fogueira {
@@ -17,29 +18,41 @@ public class FogueiraOpcoes extends Fogueira {
             }
             System.out.println("Você dormir um pouco. Vida atual " + heroi.getVida());
         }else if (escolha == 2){
-            melhorarCarta();
+            melhorarCarta(baralho);
         }
     }
-    private void melhorarCarta(){
+    public void melhorarCarta(Baralho baralho){
         Scanner scanner = new Scanner(System.in);
+        ArrayList<CartaDano> opcoesDano = new ArrayList<>();
         System.out.println("Escolha uma carta de dano para 'dar um grau':");
 
-        for(int i = 0; i < baralho.getMao().size(); i++){
-            Carta c = baralho.getMao().get(i);
-            if(c instanceof CartaDano){
-                System.out.println((i+1) + " - " + c.getNome());
+    for (Carta c : baralho.getMao()) {
+            if (c instanceof CartaDano) {
+                opcoesDano.add((CartaDano) c);
             }
         }
-        System.out.println(">>> ");
-        int idx = scanner.nextInt() - 1;
 
-        if(idx >= 0 && idx < baralho.getMao().size()){
-            Carta c = baralho.getMao().get(idx);
-            if(c instanceof CartaDano){
-                CartaDano carta_dano = (CartaDano) c;
-                carta_dano.setDano(carta_dano.getDano() + 5);
-                System.out.println("A carta [" + carta_dano.getNome() + "] agora causa " + carta_dano.GetDano() + " de dano!");
-            }
+        if (opcoesDano.isEmpty()) {
+            System.out.println("[ Você não possui cartas de dano no baralho! ]");
+            return;
+        }
+
+        for (int i = 0; i < opcoesDano.size(); i++) {
+            System.out.println((i + 1) + " - " + opcoesDano.get(i).getNome() + 
+                            " (Dano Atual: " + opcoesDano.get(i).GetDano() + ")");
+        }
+
+        System.out.print(">>> ");
+        int escolha = scanner.nextInt();
+        int idx = escolha - 1;
+
+        if (idx >= 0 && idx < opcoesDano.size()) {
+            CartaDano cartaSelecionada = opcoesDano.get(idx);
+            cartaSelecionada.setDano(cartaSelecionada.GetDano() + 5);
+            System.out.println("A carta [" + cartaSelecionada.getNome() + "] agora causa " + cartaSelecionada.GetDano() + " de dano!");
+        } else {
+            System.out.println("Opção inválida!");
         }
     }
 }
+

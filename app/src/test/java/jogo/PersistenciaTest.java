@@ -14,7 +14,7 @@ public class PersistenciaTest {
         cartasTeste.add("Café da tarde");
         cartasTeste.add("Bolsa Família");
 
-        EstadoJogo estadoOriginal = new EstadoJogo(85, 10, "Vila dos Dinossauros - Acre", cartasTeste);
+        EstadoJogo estadoOriginal = new EstadoJogo(85, 10, "Vila dos Dinossauros - Acre", cartasTeste, 0);
 
 
         gj.salvar(estadoOriginal);

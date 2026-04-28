@@ -22,6 +22,12 @@ public class GerenciadorJogo {
             System.err.println("Erro ao salvar o jogo: " + e.getMessage());
         }
     }
+    public void deletarSave(){
+        java.io.File file = new java.io.File("save.json");
+        if(file.exists()){
+            file.delete();
+        }
+    }
 
     public EstadoJogo carregar() {
         try (FileReader reader = new FileReader(ARQUIVO_SAVE)) {
