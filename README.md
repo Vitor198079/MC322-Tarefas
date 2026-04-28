@@ -17,13 +17,18 @@ O projeto adota a estrutura padrão do **Gradle** para Java, com separação cla
 │  ├─ main/java/
 │  │  ├─ App.java               # Classe Principal e inicialização do Mapa
 │  │  ├─ jogo/
+│  │  │  ├─ Fogueira/            # Arquivos que definem o funcionamento do sistema de descanso do jogo (Template Method)
+│  │  │  ├─ Loja/                # Arquivos que definem o funciomento do sistema de loja do jogo (Strategy Pattern)
+│  │  │  ├─ EstadoJogo.java      # DTO para persistência
 │  │  │  ├─ Batalha.java         # Lógica de combate individual
 │  │  │  ├─ GameManager.java     # Orquestrador de turnos utilizando Observer
 |  |  |  ├─ Arte.java            # Artes dos personagens e ASCII           
 |  |  |  ├─ Terminal.java        # Funções de limpar e pausar o terminal
 |  |  |  ├─ EstadoJogo.java      # Lógica de salvamento do estado do jogo
 │  │  │  ├─ GerenciadorJogo.java # Lógica de serialização/desserialização JSON
+│  │  │  ├─ Cores.java           # Utilizado para formatação do texto no terminal via ANSI
 │  │  │  ├─ EstadoJogo.java      # DTO para persistência
+│  │  │  ├─ Evento.java          # Define os acontecimentos durante o jogo
 │  │  │  └─ NoMapa.java          # Estrutura de dados (Árvore) para navegação
 │  │  ├─ cartas/                 # Implementações do Baralho e tipos de Cartas
 │  │  ├─ entidades/              # Heróis e Inimigos (Silvio, Boleto)
@@ -52,15 +57,68 @@ O relatório HTML está disponível em: *build/reports/jacoco/test/html/index.ht
 - **Navegação(Árvore):** Avance por nós como Guarujá, Acre e Taubaté. A posição e os caminhos disponíveis são gerenciados dinamicamente.
 - **Combate e Turnos:** Gerencia 12 Horas de Sono (energia) por turno para jogar as cartas de ataque, defesa ou efeitos.
 - **Persistência de Estado (JSON):** Salve o progresso a qualquer momento ("0 - Salvar e Sair"). Os dados (vida, mapa, carta na mão) são gravados em *save.json* e recarregados automaticamente na próxima sessão.
+## 5. Sistemas de Progressão e Design Patterns
+- **Sistema de Loja de Itens(Baú do Silvio)**
+ * **Descrição:** Permite ao jogador gastar o ouro acumulado em batalhas para recuperar vida ou refinar o baralho removendo cartas indesejadas.
+ * **Padrão de Design:** Strategy Pattern.
+ * **Fonte:** refactoring.guru/design-patterns/strategy.
+    - Justificativa: O padrão permite que a Loja seja extensível. Novos itens (estratégias) podem ser criados sem alterar o código principal da classe **Loja**.
+- **Sistema de Fogueira (Área de Descanso)**
+ * **Descrição:** Um evento de pausa onde o jogador pode escolher entre recuperar ou melhorar o dano de uma de suas cartas.
+ * **Padrão de Design:** Template Method.
+ * **Fonte:** refactoring.guru/design-patterns/template-method.
+ * **Justificativa:** O padrão define o esqueleto do ritual da fogueira (exibir arte -> escolher -> executar -> finalizar) na classe pai, garantindo que o fluxo do evento seja consistente, enquanto permite que as subclasses definam comportamentos específicos para as ações de melhoria e descanso.
+ 
+## 6. Diagramas UML
+**1. Diagrama de Padrão Strategy (Loja)**
+```mermaid
+classDiagram
+    class Loja {
+    - prateleira: ~ArrayList~ItemLoja~
+    + iniciar(heroi: Heroi): boolean
+    }
+    class Interface_Loja {
+        <<interface>>
+        + aplicar(heroi: Heroi, baralho: Baralho): boolean
+        + getDescricao(): String
+    }
+    class CompraCura {
+        + aplicar(heroi, baralho): boolean
+    }
+    class RemoveCarta{
+        + aplicar(heroi, baralho): boolean
+    }
+    Loja --> Interface_Loja : utiliza
+    Interface_Loja <|.. CompraCura
+    Interface_Loja <|.. RemoveCarta
+```
 
-## 5. Tecnologias Utilizadas
+**2. Diagrama de Padrão Template Method (Fogueira)**
+```mermaid
+class Fogueira {
+        <<abstract>>
+        + iniciar(heroi: Heroi): boolean
+        - exibirArteFogueira(): void
+        - solicitaEscolha(): int
+        # executarAcao(escolha: int, heroi: Heroi)*: void
+        - finalizarEvento(): void
+    }
+    class FogueiraOpcoes {
+        # executarAcao(escolha: int, heroi: Heroi): void
+        - melhorarCarta(): void
+    }
+    Evento <|.. Fogueira
+    Fogueira <|.. FogueiraOpcoes
+```
+
+## 7. Tecnologias Utilizadas
 * Linguagem: Java
 * Ferramente de Build: Gradle
 * Testes: JUnit 5
 * Cobertura de Código: JaCoCo
 * Persistência: Google Gson
 
-## 6. Autoria
+## 8. Autoria
 Projeto desenvolvido por:
 * **Guilherme Arthur Arruda de Figueiredo, RA 174618**
 * **Vitor Ribeiro Lima, RA 198079**
