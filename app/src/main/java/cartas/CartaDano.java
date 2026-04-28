@@ -26,9 +26,6 @@ public class CartaDano extends Carta{
     public int GetDano(){
         return dano;
     }
-    publico void setDano(int dano){
-        this.dano = dano;
-    }
 
     /**
      * Realiza o ataque, sacrificando o sono do herói para ferir o oponente.
