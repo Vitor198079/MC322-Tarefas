@@ -101,15 +101,15 @@ classDiagram
             + iniciar(heroi: Heroi): boolean
             - exibirArteFogueira(): void
             - solicitaEscolha(): int
-            # executarAcao(escolha: int, heroi: Heroi)*: void
+            # executarAcao(escolha: int, heroi: Heroi): void
             - finalizarEvento(): void
         }
         class FogueiraOpcoes {
             # executarAcao(escolha: int, heroi: Heroi): void
             - melhorarCarta(): void
         }
-        Evento <|.. Fogueira
-        Fogueira <|.. FogueiraOpcoes
+        Evento <|-- Fogueira
+        Fogueira <|-- FogueiraOpcoes
 ```
 
 ## 7. Tecnologias Utilizadas

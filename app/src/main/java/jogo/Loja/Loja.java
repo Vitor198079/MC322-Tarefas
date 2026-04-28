@@ -29,7 +29,7 @@ public class Loja extends Evento {
 
             for (int i = 0; i < prateleira.size(); i++){
                 ItemLoja item = prateleira.get(i);
-                System.out.println((i=1) + " - " + item.in.getDescricao() + " | Preço: " + item.preco + " Ouro");
+                System.out.println((i+1) + " - " + item.in.getDescricao() + " | Preço: " + item.preco + " Ouro");
             }
             System.out.println("0 - Sair da loja");
             System.out.println(">>> ");

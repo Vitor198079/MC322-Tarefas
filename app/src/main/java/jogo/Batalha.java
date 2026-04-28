@@ -151,12 +151,12 @@ public class Batalha extends Evento{
         ArrayList<Carta> recompensas = baralho.gerarRecompensasAleatorias(3);
         System.out.println("Escolha uma carta para adicionar ao seu baralho permanentemente:");
         for(int i = 0; i < recompensas.size(); i++){
-            System.out.println((i+1) + " - [" + recompensas.get(i).getNome() + "] " + recompensas.get(i).getDescricao);
+            System.out.println((i+1) + " - [" + recompensas.get(i).getNome() + "] " + recompensas.get(i).getDescricao());
 
         }
         System.out.println("4 - Pular seu troco de pão (Não pegue nada)");
         System.out.println(">>> ");
-        int escolha = teclado.nexInt();
+        int escolha = teclado.nextInt();
         if(escolha >= 1 && escolha <= 3){
             Carta adquirida = recompensas.get(escolha -1);
             Baralho.adicionaCarta(adquirida);

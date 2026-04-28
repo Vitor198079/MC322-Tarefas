@@ -125,8 +125,12 @@ public class Baralho {
      */
     public ArrayList<Carta> gerarRecompensasAleatorias(int quantidade){
         ArrayList<Carta> opcoes = new ArrayList<>();
-
+        for(int i  = 0; i < quantidade && i < compra.size(); i++){
+            opcoes.add(compra.get(i));
+        }
+        return opcoes;
     }
+
     /**
      * Adiciona uma carta permanentemente à lista de compras do jogador
      */
