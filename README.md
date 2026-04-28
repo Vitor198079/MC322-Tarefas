@@ -107,8 +107,13 @@ class Fogueira {
         # executarAcao(escolha: int, heroi: Heroi): void
         - melhorarCarta(): void
     }
+<<<<<<< HEAD
     Evento <|.. Fogueira
     Fogueira <|.. FogueiraOpcoes
+=======
+    Evento <|-- Fogueira
+    Fogueira <|-- FogueiraOpcoes
+>>>>>>> 7a8e6d062df657559c226888e289635d4444c882
 ```
 
 ## 7. Tecnologias Utilizadas
