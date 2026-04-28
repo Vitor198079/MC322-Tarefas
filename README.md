@@ -95,25 +95,21 @@ classDiagram
 
 **2. Diagrama de Padrão Template Method (Fogueira)**
 ```mermaid
-class Fogueira {
-        <<abstract>>
-        + iniciar(heroi: Heroi): boolean
-        - exibirArteFogueira(): void
-        - solicitaEscolha(): int
-        # executarAcao(escolha: int, heroi: Heroi)*: void
-        - finalizarEvento(): void
-    }
-    class FogueiraOpcoes {
-        # executarAcao(escolha: int, heroi: Heroi): void
-        - melhorarCarta(): void
-    }
-<<<<<<< HEAD
-    Evento <|.. Fogueira
-    Fogueira <|.. FogueiraOpcoes
-=======
-    Evento <|-- Fogueira
-    Fogueira <|-- FogueiraOpcoes
->>>>>>> 7a8e6d062df657559c226888e289635d4444c882
+class Diagram
+    class Fogueira {
+            <<abstract>>
+            + iniciar(heroi: Heroi): boolean
+            - exibirArteFogueira(): void
+            - solicitaEscolha(): int
+            # executarAcao(escolha: int, heroi: Heroi)*: void
+            - finalizarEvento(): void
+        }
+        class FogueiraOpcoes {
+            # executarAcao(escolha: int, heroi: Heroi): void
+            - melhorarCarta(): void
+        }
+        Evento <|.. Fogueira
+        Fogueira <|.. FogueiraOpcoes
 ```
 
 ## 7. Tecnologias Utilizadas
