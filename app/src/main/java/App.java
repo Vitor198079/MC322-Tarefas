@@ -50,12 +50,24 @@ public class App{
         Batalha batalha3 = new Batalha(null, inimigosno3, baralho, silvio, cartao, boleto);
         NoMapa Taubate = new NoMapa("Taubaté - SP", batalha3);
 
-        inicio.adiciona_caminho(Acre);
-        inicio.adiciona_caminho(Taubate);
+        Fogueira fogueira = new FogueiraOpcoes("Fogueira do Silvio", baralho);
+        NoMapa descanso = new NoMapa("Área do Descanso", fogueira);
+        Escolha evento = new Escolha("Perigo, do Todo Mundo Odeia o Chris", "No meio do caminho, um sujeito negro de óculos escuros que usava crocs te aborda.\n" + "'Aí, chefe! Tenho uns esquemas bons aqui pra curar esse seu cansaço. Vai encarar?'");
+        NoMapa vinte_cinco_marco = new NoMapa("25 de Março", evento);
+        Loja loja = new Loja("Baú do Silvio", baralho);
+        NoMapa noLoja = new NoMapa("Camelódromo da Loja", loja);
+        inicio.adiciona_caminho(vinte_cinco_marco);
+        vinte_cinco_marco.adiciona_caminho(noLoja);
+        vinte_cinco_marco.adiciona_caminho(descanso);
+        descanso.adiciona_caminho(Acre);
+        descanso.adiciona_caminho(Taubate);
+        descanso.adiciona_caminho(Acre);
+        descanso.adiciona_caminho(Taubate);
         atual = inicio;
         if (save != null) {
             System.out.println(Cores.VERDE + "Carregando baderna anterior de " + save.localAtual + "..." + Cores.RESET);
             Silvio_Santos = new Heroi("Silvio Santos", save.vida, save.horasDeSono);
+            Silvio_Santos.setOuro(save.ouro);
             
             atual = buscarNoPeloNome(save.localAtual, inicio);
             
@@ -67,14 +79,13 @@ public class App{
             Silvio_Santos = new Heroi("Silvio Santos", 100, 12);
             atual = inicio;
         }
-        atualizarHeroiNasBatalhas(inicio, Silvio_Santos);
         boolean jogo = true;
         while(jogo && atual != null){
             Terminal.limparTela();
             System.out.println(Cores.CIANO + ">>> VOCÊ CHEGOU EM: " + atual.getlocal() + " <<<" + Cores.RESET);
             Terminal.pausar(1500);
 
-            boolean sobreviveu = atual.getBatalha().executar();
+            boolean sobreviveu = atual.getEvento().iniciar(Silvio_Santos);
 
             if (!sobreviveu) {
                 System.out.println(Cores.VERMELHO + "\nDERROTA! O sistema te venceu. Espere pela contratação do Vasco." + Cores.RESET);
@@ -110,6 +121,7 @@ public class App{
                         EstadoJogo estado = new EstadoJogo(
                             Silvio_Santos.getVida(), 
                             Silvio_Santos.getHorasdeSono(), 
+                            Silvio_Santos.getOuro(),
                             atual.getlocal(), 
                             nomesCartas
                         );
@@ -153,35 +165,5 @@ public class App{
             }
         }
         return null;
-    }
-
-    /**
-     * Garante que todas as batalhas usem a instância correta do herói (carregada ou nova).
-     */
-/**
- * Percorre todo o mapa e garante que cada objeto Batalha conheça o herói atual.
- */
-    private static void atualizarHeroiNasBatalhas(NoMapa raiz, Heroi heroi) {
-        if (raiz == null) return;
-
-        Queue<NoMapa> fila = new LinkedList<>();
-        ArrayList<NoMapa> visitados = new ArrayList<>();
-
-        fila.add(raiz);
-        while (!fila.isEmpty()) {
-            NoMapa atual = fila.poll();
-            
-            // Atualiza o herói na batalha deste nó específico
-            if (atual.getBatalha() != null) {
-                atual.getBatalha().setHeroi(heroi);
-            }
-
-            visitados.add(atual);
-            for (NoMapa proximo : atual.getCaminhos()) {
-                if (!visitados.contains(proximo)) {
-                    fila.add(proximo);
-                }
-            }
-        }
     }
 }
