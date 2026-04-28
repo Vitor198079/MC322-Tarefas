@@ -95,7 +95,7 @@ classDiagram
 
 **2. Diagrama de Padrão Template Method (Fogueira)**
 ```mermaid
-class Diagram
+classDiagram
     class Fogueira {
             <<abstract>>
             + iniciar(heroi: Heroi): boolean
