@@ -50,11 +50,19 @@ public class App{
         Batalha batalha3 = new Batalha(null, inimigosno3, baralho, silvio, cartao, boleto);
         NoMapa Taubate = new NoMapa("Taubaté - SP", batalha3);
 
+        Fogueira fogueira = new FogueiraOpcoes("Fogueira do Silvio", baralho);
+        NoMapa descanso = new NoMapa("Área do Descanso", fogueira);
         Escolha evento = new Escolha("Perigo, do Todo Mundo Odeia o Chris", "No meio do caminho, um sujeito negro de óculos escuros que usava crocs te aborda.\n" + "'Aí, chefe! Tenho uns esquemas bons aqui pra curar esse seu cansaço. Vai encarar?'");
         NoMapa vinte_cinco_marco = new NoMapa("25 de Março", evento);
-        inicio.adiciona_caminho(vinte_cinco_marco)
-        vinte_cinco_marco.adiciona_caminho(Acre);
-        vinte_cinco_marco.adiciona_caminho(Taubate);
+        Loja loja = new Loja("Baú do Silvio", baralho);
+        NoMapa noLoja = new NoMapa("Camelódromo da Loja", loja);
+        inicio.adiciona_caminho(vinte_cinco_marco);
+        vinte_cinco_marco.adiciona_caminho(noLoja);
+        vinte_cinco_marco.adiciona_caminho(descanso);
+        descanso.adiciona_caminho(Acre);
+        descanso.adiciona_caminho(Taubate);
+        descanso.adiciona_caminho(Acre);
+        descanso.adiciona_caminho(Taubate);
         atual = inicio;
         if (save != null) {
             System.out.println(Cores.VERDE + "Carregando baderna anterior de " + save.localAtual + "..." + Cores.RESET);
