@@ -2,6 +2,7 @@ package jogo;
 import entidades.*;
 import cartas.*;
 import java.util.Scanner;
+import java.util.Random;
 
 public class FogueiraOpcoes extends Fogueira {
     public FogueiraOpcoes(String nome, Baralho baralho){
@@ -37,7 +38,7 @@ public class FogueiraOpcoes extends Fogueira {
             if(c instanceof CartaDano){
                 CartaDano carta_dano = (CartaDano) c;
                 carta_dano.setDano(carta_dano.getDano() + 5);
-                System.out.println("A carta [" + carta_dano.getNome() + "] agora causa " + carta_dano.getDano() + " de dano!");
+                System.out.println("A carta [" + carta_dano.getNome() + "] agora causa " + carta_dano.GetDano() + " de dano!");
             }
         }
     }

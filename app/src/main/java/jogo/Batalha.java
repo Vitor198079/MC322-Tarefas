@@ -10,6 +10,7 @@ import jogo.Cores;
 import jogo.Terminal;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Batalha extends Evento{
     private Heroi heroi;
