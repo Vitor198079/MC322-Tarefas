@@ -159,7 +159,7 @@ public class Batalha extends Evento{
         int escolha = teclado.nextInt();
         if(escolha >= 1 && escolha <= 3){
             Carta adquirida = recompensas.get(escolha -1);
-            Baralho.adicionaCarta(adquirida);
+            baralho.adicionaCarta(adquirida);
             System.out.println("Carta [" + adquirida.getNome() + "] adicionada ao baralho!");
             Terminal.pausar(2000);
         }

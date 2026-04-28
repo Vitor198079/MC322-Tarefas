@@ -9,7 +9,7 @@ import efeitos.Ansiedade;
 public class Heroi extends Entidade {
     private int horas_de_sono;
     private int max_horas_de_sono;
-    private int ouro;
+    private int ouro = 0;
 
     /**
      * Cria um novo herói com atributos de vitalidade e descanso.
@@ -28,6 +28,12 @@ public class Heroi extends Entidade {
     }
     public void setHorasdeSono(int horas){
         this.horas_de_sono = horas;
+    }
+    public int getOuro(){
+        return this.ouro;
+    }
+    public void setOuro(int ouro){
+        this.ouro = ouro;
     }
 
     /**

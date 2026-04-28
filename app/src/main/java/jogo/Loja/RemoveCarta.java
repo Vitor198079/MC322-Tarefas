@@ -1,6 +1,6 @@
 package jogo;
 import entidades.Heroi;
-import jogo.Interface_LojaLoja;
+import jogo.Interface_Loja;
 import cartas.Baralho;
 import java.util.Scanner;
 

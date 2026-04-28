@@ -8,9 +8,9 @@ public class NoMapa {
     private Evento evento;
     private ArrayList<NoMapa> caminhos;
 
-    public NoMapa(String local, Batalha batalha){
+    public NoMapa(String local, Evento evento){
         this.local = local;
-        this.batalha = batalha;
+        this.evento = evento;
         this.caminhos = new ArrayList<>();
     }
     public void adiciona_caminho(NoMapa proximo){
@@ -22,7 +22,7 @@ public class NoMapa {
     public String getlocal(){
         return this.local;
     }
-    public Batalha getEvento(){
+    public Evento getEvento(){
         return this.evento;
     }
     public boolean ehfimdomapa(){

@@ -1,7 +1,7 @@
 package cartas;
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.Random;
 /**
  * Representa o baralho do jogador, controlando as cartas de compra,
  * mão e descarte ao longo da partida.

@@ -13,7 +13,7 @@ public class Escolha extends Evento {
     }
     public boolean iniciar(Heroi heroi){
         Scanner teclado = new Scanner(System.in);
-        System.out.println(Cores.ROXO + "\n=== EVENTO: " + this.getNome().toUpperCase() + " ===" + Cores.RESET);
+        System.out.println(Cores.AMARELO + "\n=== EVENTO: " + this.getNome().toUpperCase() + " ===" + Cores.RESET);
         System.out.println(this.descricao);
 
         System.out.println("\nO que você faz?");

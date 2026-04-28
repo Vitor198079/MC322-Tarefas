@@ -36,18 +36,18 @@ public class App{
 
         ArrayList<Inimigo> inimigosno1 = new ArrayList<>();
         inimigosno1.add(new Boleto("Boleto Vencido (Nível 1)", 50, 15));
-        Batalha batalha1 = new Batalha(null, inimigosno1, baralho, silvio, cartao, boleto);
+        Batalha batalha1 = new Batalha(Silvio_Santos, inimigosno1, baralho, silvio, cartao, boleto);
         inicio = new NoMapa("Guarujá", batalha1);
 
         ArrayList<Inimigo> inimigosno2 = new ArrayList<>();
         inimigosno2.add(new Boleto("Fatura de Cartão (Nível 1)", 80, 25));
-        Batalha batalha2 = new Batalha(null, inimigosno2, baralho, silvio, cartao, boleto);
+        Batalha batalha2 = new Batalha(Silvio_Santos, inimigosno2, baralho, silvio, cartao, boleto);
         NoMapa Acre = new NoMapa("Vila dos Dinossauros - Acre", batalha2);
 
         ArrayList<Inimigo> inimigosno3 = new ArrayList<>();
         inimigosno3.add(new Boleto("Boleto Vencido(Nível 3)", 80, 20));
         inimigosno3.add(new Boleto("Fatura de Cartão (Nível 2)", 100, 30));
-        Batalha batalha3 = new Batalha(null, inimigosno3, baralho, silvio, cartao, boleto);
+        Batalha batalha3 = new Batalha(Silvio_Santos, inimigosno3, baralho, silvio, cartao, boleto);
         NoMapa Taubate = new NoMapa("Taubaté - SP", batalha3);
 
         Fogueira fogueira = new FogueiraOpcoes("Fogueira do Silvio", baralho);

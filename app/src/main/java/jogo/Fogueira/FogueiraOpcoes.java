@@ -26,7 +26,7 @@ public class FogueiraOpcoes extends Fogueira {
         for(int i = 0; i < baralho.getMao().size(); i++){
             Carta c = baralho.getMao().get(i);
             if(c instanceof CartaDano){
-                System.out.prinln((i+1) + " - " + c.getNome());
+                System.out.println((i+1) + " - " + c.getNome());
             }
         }
         System.out.println(">>> ");
@@ -35,7 +35,7 @@ public class FogueiraOpcoes extends Fogueira {
         if(idx >= 0 && idx < baralho.getMao().size()){
             Carta c = baralho.getMao().get(idx);
             if(c instanceof CartaDano){
-                CartaDano carta_dano = (carta_dano) c;
+                CartaDano carta_dano = (CartaDano) c;
                 carta_dano.setDano(carta_dano.getDano() + 5);
                 System.out.println("A carta [" + carta_dano.getNome() + "] agora causa " + carta_dano.getDano() + " de dano!");
             }

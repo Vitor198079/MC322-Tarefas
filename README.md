@@ -20,6 +20,7 @@ O projeto adota a estrutura padrão do **Gradle** para Java, com separação cla
 │  │  │  ├─ Fogueira/            # Arquivos que definem o funcionamento do sistema de descanso do jogo (Template Method)
 │  │  │  ├─ Loja/                # Arquivos que definem o funciomento do sistema de loja do jogo (Strategy Pattern)
 │  │  │  ├─ EstadoJogo.java      # DTO para persistência
+│  │  │  ├─ Escolha.java         # Define uma decisão narrativa no meio do jogador
 │  │  │  ├─ Batalha.java         # Lógica de combate individual
 │  │  │  ├─ GameManager.java     # Orquestrador de turnos utilizando Observer
 |  |  |  ├─ Arte.java            # Artes dos personagens e ASCII           
